@@ -18,8 +18,8 @@ class Business(db.Model):
     description = db.Column(db.String(3000), nullable=False)
     business_type = db.Column(db.String, nullable=False)
 
-    owner = db.relationship("User", back_populates="businesses")
-    reviews = db.relationship("Review", back_populates="businesses")
+    owner = db.relationship("User", back_populates="business")
+    rev = db.relationship("Review", back_populates="businesse")
     business_img = db.relationship("Business_Image", back_populates="businesses")
 
     def to_dict(self):
