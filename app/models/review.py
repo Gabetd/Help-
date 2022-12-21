@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-from .user import User
-from .business import Business
+from app.models.user import User
+from app.models.business import Business
 
 db = SQLAlchemy()
 
