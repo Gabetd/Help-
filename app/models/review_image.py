@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from app.models.review import Review
+# from app.models.review import Review
 
 class Review_Image(db.model):
   __tablename__ = "review_images"

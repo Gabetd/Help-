@@ -1,8 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from flask_sqlalchemy import SQLAlchemy
-from app.models.user import User
-from app.models.review import Review
-from app.models.business_image import Business_Image
+# from app.models.user import User
+# from app.models.review import Review
+# from app.models.business_image import Business_Image
 
 
 class Business(db.Model):

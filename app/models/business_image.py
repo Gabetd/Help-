@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .business import Business
+# from .business import Business
 
 
 class Business_Image(db.Model):
