@@ -1,8 +1,8 @@
-from flask_sqlalchemy import SQLAlchemy
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from app.models.user import User
 from app.models.business import Business
+from app.models.user import User
 
-db = SQLAlchemy()
 
 
 class Review(db.Model):
@@ -17,6 +17,8 @@ class Review(db.Model):
 
     user = db.relationship("User", back_populates="reviews")
     businesses = db.relationship("Business", back_populates="reviews")
+    review_img = db.relationship("Review_Image", back_populates="reviews")
+
 
     def to_dict(self):
         return {

@@ -1,10 +1,12 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from flask_sqlalchemy import SQLAlchemy
 from app.models.user import User
+from app.models.review import Review
+from app.models.business_image import Business_Image
+
 
 class Business(db.Model):
     __tablename__ = "businesses"
-
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     business_name = db.Column(db.String(40), nullable=False)
@@ -18,6 +20,7 @@ class Business(db.Model):
 
     owner = db.relationship("User", back_populates="businesses")
     reviews = db.relationship("Review", back_populates="businesses")
+    business_img = db.relationship("Business_Image", back_populates="businesses")
 
     def to_dict(self):
         return {
