@@ -20,7 +20,7 @@ class Business(db.Model):
     owner = db.relationship("User", back_populates="businesses")
     reviews = db.relationship("Review", back_populates="businesses")
 
-    def to_dict(self, images):
+    def to_dict(self):
         return {
             "id":self.id,
             "owner_id":self.owner_id,
@@ -30,7 +30,7 @@ class Business(db.Model):
             "city":self.city,
             "zipcode":self.zipcode,
             "state":self.state,
-            "desctiption ":self.description,
+            "desctiption":self.description,
             "business_type": self.business_type
-            "business_image": images
+            # "business_image": images
         }
