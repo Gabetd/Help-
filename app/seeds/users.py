@@ -1,18 +1,21 @@
-from app.models import db, User, environment, SCHEMA
+from app.models import db, User, environment, SCHEMA, Business, Business_Image, Review, Review_Image
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    # demo = User(
-    #     username='Demo', email='demo@aa.io', password='password', profile_image='https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fprofile%2520picture%2F&psig=AOvVaw2NATKDFLuffSjFAL_avSZA&ust=1671747375423000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCJjnhrXei_wCFQAAAAAdAAAAABAE')
-    # marnie = User(
-    #     username='marnie', email='marnie@aa.io', password='password', profile_image='https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fprofile%2520picture%2F&psig=AOvVaw2NATKDFLuffSjFAL_avSZA&ust=1671747375423000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCJjnhrXei_wCFQAAAAAdAAAAABAE')
-    # bobbie = User(
-    #     username='bobbie', email='bobbie@aa.io', password='password', profile_image='https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fprofile%2520picture%2F&psig=AOvVaw2NATKDFLuffSjFAL_avSZA&ust=1671747375423000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCJjnhrXei_wCFQAAAAAdAAAAABAE')
+    demo = User(
+        username='Demo', email='demo@aa.io', password='password', profile_image='https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fprofile%2520picture%2F&psig=AOvVaw2NATKDFLuffSjFAL_avSZA&ust=1671747375423000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCJjnhrXei_wCFQAAAAAdAAAAABAE')
+    marnie = User(
+        username='marnie', email='marnie@aa.io', password='password', profile_image='https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fprofile%2520picture%2F&psig=AOvVaw2NATKDFLuffSjFAL_avSZA&ust=1671747375423000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCJjnhrXei_wCFQAAAAAdAAAAABAE')
+    bobbie = User(
+        username='bobbie', email='bobbie@aa.io', password='password', profile_image='https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fprofile%2520picture%2F&psig=AOvVaw2NATKDFLuffSjFAL_avSZA&ust=1671747375423000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCJjnhrXei_wCFQAAAAAdAAAAABAE')
 
-    # db.session.add(demo)
-    # db.session.add(marnie)
-    # db.session.add(bobbie)
+    db.session.add(demo)
+    db.session.add(marnie)
+    db.session.add(bobbie)
+
+
+
     db.session.commit()
 
 
