@@ -12,7 +12,8 @@ class Business(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    # owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    owner_id = db.Column(db.Integer, nullable=False)
     business_name = db.Column(db.String(40), nullable=False)
     phone = db.Column(db.String(12), nullable=False)
     street_address = db.Column(db.String(50), nullable=False)
@@ -22,11 +23,11 @@ class Business(db.Model):
     description = db.Column(db.String(3000), nullable=False)
     business_type = db.Column(db.String, nullable=False)
 
-    owner = db.relationship("User", back_populates="business")
-    rev = db.relationship("Review", back_populates="businesse")
-    business_img = db.relationship("Business_Image", back_populates="businesses")
+    # owner = db.relationship("User", back_populates="business")
+    # rev = db.relationship("Review", back_populates="businesse")
+    # business_img = db.relationship("Business_Image", back_populates="businesses")
 
-    def to_dict(self):
+    def to_dict(self, images):
         return {
             "id":self.id,
             "owner_id":self.owner_id,
@@ -38,5 +39,5 @@ class Business(db.Model):
             "state":self.state,
             "desctiption":self.description,
             "business_type": self.business_type
-            # "business_image": images
+            "business_image": images
         }
