@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 class Business(db.Model):
     __tablename__ = "businesses"
 
-     if environment == "production":
+    if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
