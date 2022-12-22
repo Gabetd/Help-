@@ -8,6 +8,8 @@ function Home(){
   return(
     <div>
       <h1>WELCOME TO HELP!</h1>
+      <h2>Nodemon Works!!!</h2>
+      
     </div>
   )
 }
