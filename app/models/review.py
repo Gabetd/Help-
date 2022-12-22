@@ -14,14 +14,8 @@ class Review(db.Model):
   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
   stars = db.Column(db.Integer, nullable=False)
   review = db.Column(db.String(3000))
-  # business_id = db.Column(db.Integer, db.ForeignKey("businesses.id"), nullable=False)
-  # user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
   business_id = db.Column(db.Integer, nullable=False)
   user_id = db.Column(db.Integer, nullable=False)
-
-  # user = db.relationship("User", back_populates="reviews")
-  # businesse = db.relationship("Business", back_populates="rev")
-  # review_img = db.relationship("Review_Image", back_populates="review")
 
 
   def to_dict(self, images):
