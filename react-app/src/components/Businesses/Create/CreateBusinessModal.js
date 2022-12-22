@@ -1,80 +1,145 @@
-// import React, { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useHistory } from 'react-router-dom'
-// import { createBusinessThunk } from "../../../store/business";
-// import { getAllBusinessesThunk } from "../../../store/business";
-// import { getSingleBusinessThunk } from "../../../store/business";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom'
+import { createBusinessThunk } from "../../../store/business";
+import { getSingleBusinessThunk } from "../../../store/business";
 
 
 
-// export default function CreateABusiness({ setShowModal }) {
-//     const dispatch = useDispatch()
-//     const history = useHistory()
-//     const User = useSelector(state => state.session.user)
-//     const currUser = currentUser.user
-//     const [name, setName] = useState('');
-//     // const [imageUrl, setImageUrl] = useState(
-//     //     'https://moodlehub.ca/pluginfile.php/6842/mod_book/chapter/9131/group2.jpg'
-//     // );
-//     const [validationErrors, setValidationErrors] = useState([])
+export default function CreateABusiness() {
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const User = useSelector(state => state.session.user)
+    // const [ownerId, setOwnerId] = useState('');
+    const [businessName,setBusinessName] = useState('');
+    const [phone,setPhone] = useState('');
+    const [streetAddress,setStreetAddress] = useState('');
+    const [city,setCity] = useState('');
+    const [state,setState] = useState('');
+    const [zipcode,setZipcode] = useState('');
+    const [description,setDescription] = useState('');
+    const [type, setType] = useState('');
 
-//     /* Validation errors for form */
-//     useEffect(() => {
-//         const validationErrors = [];
-//         if (!name) validationErrors.push('Please Provide a name');
-//         if (name.length > 40) validationErrors.push('Please provide a group name less than 50 characters');
-//         // if (name.length < 4) validationErrors.push('Please provide a longer group name')
-//         if (!imageUrl) validationErrors.push('Please provide an image url');
-//         setValidationErrors(validationErrors);
-//     }, [name, imageUrl]);
+    // console.log('Clicked')
+    const [validationErrors, setValidationErrors] = useState([])
 
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         const group = {
-//             name,
-//             image_url: imageUrl,
-//             owner_id: currUser.id
-//         }
-//         await dispatch(createGroupThunk(group))
-//             dispatch(getGroupsThunk())
-//             setShowModal(false)
-//             history.push('/dashboard')
-//     }
+    /* Validation errors for form */
+    useEffect(() => {
+        const validationErrors = [];
+        setValidationErrors(validationErrors);
+    }, []);
+
+    const handleSubmit = async (e) => {
+      console.log('made it to submit')
+        e.preventDefault();
+        const business = {
+          owner_id: User.id,
+          business_name: businessName,
+          phone,
+          street_address: streetAddress,
+          city,
+          zipcode,
+          state,
+          description,
+          business_type: type
+        }
+        console.log('payload = ', business)
+        const data = await dispatch(createBusinessThunk(business))
+        console.log(data)
+    if(data){
+      dispatch(getSingleBusinessThunk(data.id))
+      history.push(`/business/${data.id}`)
+      // setShowModal(false)
+    }
+
+    }
 
 
-//     return (
-//         <form onSubmit={handleSubmit} className='createAGroupForm'>
-//             <div className="errorsDiv">
-//         {validationErrors.map((error, ind) => (
-//           <div key={ind}>{error}</div>
-//         ))}
-//       </div>
-//             <h2>Create A Group</h2>
-//             <label>
-//                 <input
-//                     className="createGroupInput"
-//                     placeholder="Name"
-//                     type="text"
-//                     value={name}
-//                     onChange={(e) => setName(e.target.value)}
-//                     required
-//                 />
-//             </label>
-//             <label>
+    return (
+        <form onSubmit={handleSubmit}>
+            <div>
+        {validationErrors.map((error, ind) => (
+          <div key={ind}>{error}</div>
+        ))}
+      </div>
+            <h2>Buisness Information</h2>
+            <label>
+                <input
+                    placeholder="business name"
+                    type="text"
+                    value={businessName}
+                    onChange={(e) => setBusinessName(e.target.value)}
+                    required
+                />
+            </label>
+            <label>
+                <input
+                    placeholder="Phone Number"
+                    type="text"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    required
+                />
+            </label>
+            <label>
+                <input
+                    placeholder="Address"
+                    type="text"
+                    value={streetAddress}
+                    onChange={(e) => setStreetAddress(e.target.value)}
+                    required
+                />
+            </label>
+            <label>
+                <input
+                    placeholder="City"
+                    type="text"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    required
+                />
+            </label>
+            <label>
+                <input
+                    placeholder="Zipcode"
+                    type="text"
+                    value={zipcode}
+                    onChange={(e) => setZipcode(e.target.value)}
+                    required
+                />
+            </label>
+            <label>
+                <input
+                    placeholder="State"
+                    type="text"
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                    required
+                />
+            </label>
+            <label>
+                <input
+                    placeholder=" Business Description"
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    required
+                />
+            </label>
+            <label>
+            <select name="type"
+            onChange={(e) => setType(e.target.value)}>
+              <option value="">--Business Type--</option>
+              <option value="Vehicle Repair">Vehicle Repair</option>
+              <option value="Home Repair">Home Repair</option>
+              <option value="Self Care">Self Care</option>
+              <option value="Restaurant">Restaurant</option>
+            </select>
+            </label>
+            <div>
+            <button type="submit" disabled={validationErrors.length}>Create</button>
+            </div>
+        </form>
 
-//                 <input
-//                     className="createGroupInput"
-//                     placeholder="Add image url"
-//                     type="url"
-//                     value={imageUrl}
-//                     onChange={(e) => setImageUrl(e.target.value)}
-//                     required
-//                 />
-//             </label>
-//             <div className="outer-sub-create-div">
-//             <button type="submit" className="logout-butt btn-1" disabled={validationErrors.length}>Create</button>
-//             </div>
-//         </form>
-
-//     )
-// }
+    )
+}

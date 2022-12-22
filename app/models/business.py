@@ -33,7 +33,7 @@ class Business(db.Model):
             "city":self.city,
             "zipcode":self.zipcode,
             "state":self.state,
-            "desctiption":self.description,
+            "description":self.description,
             "business_type": self.business_type,
             # "images": images
         }

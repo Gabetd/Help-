@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Home from './components/splashPage';
+import CreateABusiness from './components/Businesses/Create/CreateBusinessModal';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -29,9 +30,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-      {/* <Route path='/' exact={true}>
-          <Home/>
-        </Route> */}
+      <Route path='/business/add' exact={true}>
+          <CreateABusiness/>
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
