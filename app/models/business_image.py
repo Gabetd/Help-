@@ -10,7 +10,13 @@ class Business_Image(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   # business_id = db.Column(db.Integer, db.ForeignKey("businesses.id"), nullable=False)
-    business_id = db.Column(db.Integer, nullable=False)
+  business_id = db.Column(db.Integer, nullable=False)
   img_url = db.Column(db.String(2000), nullable=False)
 
   # businesses = db.relationship("Business", back_populates="business_img")
+  def to_dict(self):
+    return {
+      "id":self.id,
+      "business_id": self.business_id,
+      "img": self.img_url
+      }

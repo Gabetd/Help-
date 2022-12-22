@@ -38,6 +38,6 @@ class Business(db.Model):
             "zipcode":self.zipcode,
             "state":self.state,
             "desctiption":self.description,
-            "business_type": self.business_type
-            "business_image": images
+            "business_type": self.business_type,
+            "images": images
         }
