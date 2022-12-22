@@ -11,8 +11,8 @@ class Business(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    owner_id = db.Column(db.Integer, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     business_name = db.Column(db.String(100), nullable=False)
     phone = db.Column(db.String(12), nullable=False)
     street_address = db.Column(db.String(100), nullable=False)
@@ -21,6 +21,9 @@ class Business(db.Model):
     state = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(3000), nullable=False)
     business_type = db.Column(db.String(255), nullable=False)
+
+    owner = db.relationship("User", back_populates="businesses")
+
 
     def to_dict(self):
     # , images):

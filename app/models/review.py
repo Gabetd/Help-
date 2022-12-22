@@ -11,7 +11,7 @@ class Review(db.Model):
   if environment == "production":
     __table_args__ = {'schema': SCHEMA}
 
-  id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+  id = db.Column(db.Integer, primary_key=True)
   stars = db.Column(db.Integer, nullable=False)
   review = db.Column(db.String(3000))
   business_id = db.Column(db.Integer, nullable=False)
