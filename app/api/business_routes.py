@@ -1,10 +1,10 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from app.models import User, db, Review, Business
-from app.forms import BusinessForm
+from app.forms.business_form import BusinessForm
 
 
-app.register_blueprint(business_routes, url_prefix='/api/business')
+business_routes = Blueprint('business', __name__, url_prefix='/api/business')
 
 @business_routes.route('/all', methods=['GET'])
 def get_all_business():
@@ -73,7 +73,7 @@ def del_business(business_id):
   if Business:
     for review in reviews:
       db.session.delete(review)
-            db.session.commit()
+      db.session.commit()
     db.session.delete(business)
     db.session.commit()
     return jsonify('Successfully deleted business and associated reviews')

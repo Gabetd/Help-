@@ -27,7 +27,8 @@ class Business(db.Model):
     # rev = db.relationship("Review", back_populates="businesse")
     # business_img = db.relationship("Business_Image", back_populates="businesses")
 
-    def to_dict(self, images):
+    def to_dict(self):
+    # , images):
         return {
             "id":self.id,
             "owner_id":self.owner_id,
@@ -39,5 +40,5 @@ class Business(db.Model):
             "state":self.state,
             "desctiption":self.description,
             "business_type": self.business_type,
-            "images": images
+            # "images": images
         }
