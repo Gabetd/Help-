@@ -11,7 +11,7 @@ class Business(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     # owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     owner_id = db.Column(db.Integer, nullable=False)
     business_name = db.Column(db.String(100), nullable=False)
