@@ -24,10 +24,10 @@ def seed_businesses():
     db.session.add(Plumber)
     db.session.commit()
 
-# def undo_businesses():
-#     if environment == "production":
-#         db.session.execute(f"TRUNCATE table {SCHEMA}.businesses RESTART IDENTITY CASCADE;")
-#     else:
-#         db.session.execute("DELETE FROM businesses")
+def undo_businesses():
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.businesses RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute("DELETE FROM businesses")
 
-#     db.session.commit()
+    db.session.commit()
