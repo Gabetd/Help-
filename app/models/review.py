@@ -24,11 +24,12 @@ class Review(db.Model):
   # review_img = db.relationship("Review_Image", back_populates="review")
 
 
-  def to_dict(self):
+  def to_dict(self, images):
     return {
       "id":self.id,
       "stars": self.stars,
       "review":self.review,
       "business_id":self.business_id,
-      "user_id":self.user_id
+      "user_id":self.user_id,
+      "images": images
       }
