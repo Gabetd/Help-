@@ -7,7 +7,7 @@ import { getSingleBusinessThunk } from "../../../store/business";
 
 
 
-export default function EditABusiness({setShowModal}) {
+export default function EditABusiness() {
     const dispatch = useDispatch()
     const history = useHistory()
     const User = useSelector(state => state.session.user)
@@ -33,7 +33,7 @@ export default function EditABusiness({setShowModal}) {
     const handleSubmit = async (e) => {
       console.log('made it to submit')
         e.preventDefault();
-        const business = {
+        const businesses = {
           id: business.id,
           owner_id: business.owner_id,
           business_name: businessName,
@@ -45,10 +45,10 @@ export default function EditABusiness({setShowModal}) {
           description,
           business_type: type
         }
-        console.log('payload = ', business)
-        await dispatch(editBusinessThunk(business))
+        console.log('payload = ', businesses)
+        await dispatch(editBusinessThunk(businesses))
 
-      setShowModal(false)
+      // setShowModal(false)
       dispatch(getSingleBusinessThunk(business.id))
       history.push(`/business/${business.id}`)
     }

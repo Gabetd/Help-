@@ -65,7 +65,7 @@ def edit_business(business_id):
     return jsonify(form.errors)
 
 
-@business_routes.route('/delete/<int:business_id>', methods=['PUT'])
+@business_routes.route('/delete/<int:business_id>', methods=['Delete'])
 def del_business(business_id):
   form = BusinessForm()
   business = Business.query.get(business_id)

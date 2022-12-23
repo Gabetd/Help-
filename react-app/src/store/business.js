@@ -76,8 +76,8 @@ export const createBusinessThunk = (business) => async (dispatch) => {
   return
 }
 
-export const editBusinessThunk = (business, businessId) => async (dispatch) => {
-  const response = await fetch(`/api/business/${businessId}`, {
+export const editBusinessThunk = (business) => async (dispatch) => {
+  const response = await fetch(`/api/business/${business.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -94,7 +94,7 @@ export const editBusinessThunk = (business, businessId) => async (dispatch) => {
 }
 
 export const deleteBusinessThunk = (businessId) => async (dispatch) => {
-  const response = await fetch(`/api/businesses/${businessId}`, {
+  const response = await fetch(`/api/business/delete/${businessId}`, {
     method: "DELETE"
   });
 

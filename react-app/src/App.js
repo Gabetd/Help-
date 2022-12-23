@@ -31,13 +31,6 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-      <Route path='/business/:businessId/edit'>
-          <h2>EDIT PAGE</h2>
-          <EditABusiness />
-        </Route>
-        <Route path='/business/:businessId'>
-        <SingleBusiness />
-        </Route>
       <Route path='/business/add' exact={true}>
           <CreateABusiness/>
         </Route>
@@ -55,6 +48,13 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <Home/>
+        </Route>
+        <Route path='/business/:businessId/edit'>
+          <h2>EDIT PAGE</h2>
+          <EditABusiness />
+        </Route>
+        <Route path='/business/:businessId'>
+        <SingleBusiness />
         </Route>
       </Switch>
     </BrowserRouter>
