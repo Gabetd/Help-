@@ -36,14 +36,14 @@ export default function EditABusiness() {
         const businesses = {
           id: business.id,
           owner_id: business.owner_id,
-          business_name: businessName,
-          phone,
-          street_address: streetAddress,
-          city,
-          zipcode,
-          state,
-          description,
-          business_type: type
+          business_name: business.business_name,
+          phone: business.phone,
+          street_address: business.street_address,
+          city: business.city,
+          zipcode: business.zipcode,
+          state: business.state,
+          description: business.description,
+          business_type: business.business_type
         }
         console.log('payload = ', businesses)
         await dispatch(editBusinessThunk(businesses))

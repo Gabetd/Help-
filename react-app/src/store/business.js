@@ -77,13 +77,26 @@ export const createBusinessThunk = (business) => async (dispatch) => {
 }
 
 export const editBusinessThunk = (business) => async (dispatch) => {
-  const response = await fetch(`/api/business/${business.id}`, {
+  const {id, owner_id, business_name, phone, street_address, city, zipcode, state, description, business_type} = business
+  const response = await fetch(`/api/business/edit/${business.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(business)
+    body: JSON.stringify({
+      id,
+      owner_id,
+      business_name,
+      phone,
+      street_address,
+      city,
+      zipcode,
+      state,
+      description,
+      business_type
+    })
   });
+  console.log('business = ', business, 'res = ', response)
 
   if (response.ok) {
     const Data = await response.json();

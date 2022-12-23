@@ -18,6 +18,7 @@ def business_by_id(business_id):
   return jsonify(business.to_dict())
 
 @business_routes.route('/new', methods=['POST'])
+@login_required
 def new_business():
   form = BusinessForm()
   form['csrf_token'].data = request.cookies['csrf_token']
@@ -41,11 +42,13 @@ def new_business():
 
 
 @business_routes.route('/edit/<int:business_id>', methods=['PUT'])
+@login_required
 def edit_business(business_id):
-  form = BusinessForm()
   business = Business.query.get(business_id)
-  form['csrf_token'].data = request.cookies['csrf_token']
   data = form.data
+  print('***********************************', data, '************************************')
+  form = BusinessForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
   if business and form.validate_on_submit():
     business.owner_id = data['owner_id'],
     business.business_name = data['business_name'],
@@ -55,8 +58,7 @@ def edit_business(business_id):
     business.zipcode = data['zipcode'],
     business.state = data['state'],
     business.description = data['description'],
-    business.business_type = data['business_type']
-    db.session.add(new_business)
+    business.business_type = data['business_type'],
     db.session.commit()
     return jsonify(business.to_dict())
   if not business:
@@ -66,6 +68,7 @@ def edit_business(business_id):
 
 
 @business_routes.route('/delete/<int:business_id>', methods=['Delete'])
+@login_required
 def del_business(business_id):
   form = BusinessForm()
   business = Business.query.get(business_id)
