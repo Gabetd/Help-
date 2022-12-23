@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom'
+import { useHistory, NavLink } from 'react-router-dom'
 import { getAllBusinessesThunk } from "../store/business";
 // import AddBusinessModal from "./Businesses/Create";
 import CreateABusiness from "./Businesses/Create/CreateBusinessModal";
@@ -29,10 +29,12 @@ useEffect(() => {
       <h1>WELCOME TO HELP!</h1>
       {Object.values(businesses).map(biz => (
         <div key={biz.id}>
+          <NavLink to={`/business/${biz.id}`}>
           <h2>image goes here</h2>
           <p>{biz.business_name}</p>
           <p>{biz.street_address} {biz.city} {biz.state}</p>
           <p>{biz.description}</p>
+          </NavLink>
           {user?
           <button>Add a Review</button>
         :

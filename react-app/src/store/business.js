@@ -55,6 +55,7 @@ export const getSingleBusinessThunk = (businessId) => async (dispatch) => {
   if (response.ok) {
     const Data = await response.json();
     dispatch(GetOneAction(Data));
+    return Data
   }
 }
 
@@ -124,22 +125,22 @@ export default function businessReducer(state = initialState, action){
         allBusinesses
       }
     case GetOne:
-      newState = { ...state, allBusinesses: { ...state.allBusinesses }, singleBusiness: { ...state.oneBusiness } }
-      newState.singleBusiness = action.business
+      newState = { ...state, allBusinesses: { ...state.allBusinesses }, oneBusiness: { ...state.oneBusiness } }
+      newState.oneBusiness = action.business
       return { ...newState }
     case CreateNew:
       newState = { allBusinesses: { ...state.allBusinesses } }
-      newState.singleBusiness = action.business
-      newState.singleBusiness.BusinessImages = []
+      newState.oneBusiness = action.business
+      newState.oneBusiness.BusinessImages = []
       return newState
     case Delete:
       newState = {
         allBusinesses: { ...state.allBusinesses },
-        singleBusiness: { ...state.oneBusiness }
+        oneBusiness: { ...state.oneBusiness }
       }
       delete newState.allBusinesses[action.businessId]
-      if (newState.singleBusiness.id === action.businessId) {
-        newState.singleBusiness = {}
+      if (newState.oneBusiness.id === action.businessId) {
+        newState.oneBusiness = {}
       }
       return newState
 

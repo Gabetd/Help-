@@ -10,7 +10,8 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import Home from './components/splashPage';
 import CreateABusiness from './components/Businesses/Create/CreateBusinessModal';
-
+import SingleBusiness from './components/Businesses/BusinessPage';
+import EditABusiness from './components/Businesses/Edit/EditBusinessModal';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -30,6 +31,13 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+      <Route path='/business/:businessId/edit'>
+          <h2>EDIT PAGE</h2>
+          <EditABusiness />
+        </Route>
+        <Route path='/business/:businessId'>
+        <SingleBusiness />
+        </Route>
       <Route path='/business/add' exact={true}>
           <CreateABusiness/>
         </Route>
