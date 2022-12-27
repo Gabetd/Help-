@@ -1,13 +1,14 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { editBusinessThunk } from "../../../store/business";
 import { getSingleBusinessThunk } from "../../../store/business";
 
 
 
 export default function EditABusiness() {
+    const { businessId } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
     const User = useSelector(state => state.session.user)
@@ -34,7 +35,6 @@ export default function EditABusiness() {
       console.log('made it to submit')
         e.preventDefault();
         const businesses = {
-          id: business.id,
           owner_id: business.owner_id,
           business_name: business.business_name,
           phone: business.phone,
@@ -46,7 +46,7 @@ export default function EditABusiness() {
           business_type: business.business_type
         }
         console.log('payload = ', businesses)
-        await dispatch(editBusinessThunk(businesses))
+        await dispatch(editBusinessThunk(businesses, businessId))
 
       // setShowModal(false)
       dispatch(getSingleBusinessThunk(business.id))

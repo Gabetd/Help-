@@ -76,25 +76,26 @@ export const createBusinessThunk = (business) => async (dispatch) => {
   return
 }
 
-export const editBusinessThunk = (business) => async (dispatch) => {
-  const {id, owner_id, business_name, phone, street_address, city, zipcode, state, description, business_type} = business
-  const response = await fetch(`/api/business/edit/${business.id}`, {
+export const editBusinessThunk = (business, id) => async (dispatch) => {
+  // const {id, owner_id, business_name, phone, street_address, city, zipcode, state, description, business_type} = business
+  const response = await fetch(`/api/business/edit/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      id,
-      owner_id,
-      business_name,
-      phone,
-      street_address,
-      city,
-      zipcode,
-      state,
-      description,
-      business_type
-    })
+    body: JSON.stringify(business)
+    //   {
+    //   id,
+    //   owner_id,
+    //   business_name,
+    //   phone,
+    //   street_address,
+    //   city,
+    //   zipcode,
+    //   state,
+    //   description,
+    //   business_type
+    // })
   });
   console.log('business = ', business, 'res = ', response)
 
@@ -144,7 +145,7 @@ export default function businessReducer(state = initialState, action){
     case CreateNew:
       newState = { allBusinesses: { ...state.allBusinesses } }
       newState.oneBusiness = action.business
-      newState.oneBusiness.BusinessImages = []
+      newState.oneBusiness
       return newState
     case Delete:
       newState = {

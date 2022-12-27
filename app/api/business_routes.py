@@ -45,11 +45,11 @@ def new_business():
 @login_required
 def edit_business(business_id):
   business = Business.query.get(business_id)
-  data = form.data
-  print('***********************************', data, '************************************')
   form = BusinessForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if business and form.validate_on_submit():
+    data = form.data
+    print('***********************************', data, '************************************')
     business.owner_id = data['owner_id'],
     business.business_name = data['business_name'],
     business.phone = data['phone'],
@@ -70,7 +70,7 @@ def edit_business(business_id):
 @business_routes.route('/delete/<int:business_id>', methods=['Delete'])
 @login_required
 def del_business(business_id):
-  form = BusinessForm()
+  # form = BusinessForm()
   business = Business.query.get(business_id)
   reviews = Review.query.filter(business_id == business_id).all()
   if Business:
