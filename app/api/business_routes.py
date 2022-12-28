@@ -48,17 +48,17 @@ def edit_business(business_id):
   form = BusinessForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if business and form.validate_on_submit():
-    data = form.data
+    # data = form.data
     print('***********************************', data, '************************************')
-    business.owner_id = data['owner_id'],
-    business.business_name = data['business_name'],
-    business.phone = data['phone'],
-    business.street_address = data['street_address'],
-    business.city = data['city'],
-    business.zipcode = data['zipcode'],
-    business.state = data['state'],
-    business.description = data['description'],
-    business.business_type = data['business_type'],
+    business.owner_id = form.owner_id.data,
+    business.business_name = form.business_name.data,
+    business.phone = form.phone.data,
+    business.street_address = form.street_address.data,
+    business.city = form.city.data,
+    business.zipcode = form.zipcode.data,
+    business.state = form.state.data,
+    business.description = form.description.data,
+    business.business_type = form.business_type.data
     db.session.commit()
     return jsonify(business.to_dict())
   if not business:

@@ -8,4 +8,4 @@ class ReviewForm(FlaskForm):
   review = StringField('Review')
   business_id = IntegerField('Business_Id', validators=[DataRequired()])
   user_id = IntegerField('User_Id', validators=[DataRequired()])
-  
+
