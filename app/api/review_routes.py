@@ -5,22 +5,24 @@ from app.forms.review_form import ReviewForm
 
 review_routes = Blueprint('review', __name__, url_prefix='/api/review')
 
-@review_routes.route('/all')
+@review_routes.route('/all', methods=['GET'])
 def get_all_reviews():
   form = ReviewForm()
   reviews = Review.query.all()
+  print('**********************,reviews', reviews)
   review_obj = [review.to_dict() for review in reviews]
   return jsonify(review_obj)
 
 
-@review_routes.route('/<int:review_id>')
-def review_by_id(review_id):
-  review = Review.query.get(review_id)
-  return jsonify(review.to_dict)
+@review_routes.route('/business/<int:business_id>', methods=['GET'])
+def review_by_business_id(business_id):
+  reviews = Review.query.filter(business_id == business_id).all()
+  review_obj = [review.to_dict() for review in reviews]
+  return jsonify(review_obj)
 
-@review_routes.route('/new', methods=['POST'])
+@review_routes.route('/new/<int:business_id>', methods=['POST'])
 @login_required
-def new_review():
+def new_review(business_id):
   form = ReviewForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   data = form.data
@@ -36,10 +38,10 @@ def new_review():
     return jsonify(new_review.to_dict())
   return jsonify(form.errors)
 
-@review_routes.route("/<int:id>", methods=["PUT"])
+@review_routes.route("/<int:review_id>", methods=["PUT"])
 @login_required
-def edit_review(id):
-  review= Review.query.get(id)
+def edit_review(review_id):
+  review= Review.query.get(review_id)
   if not review:
     return {'errors': ['That review does not exist']}, 401
   form = ReviewForm()
@@ -51,11 +53,11 @@ def edit_review(id):
     review.business_id = form.business_id.data,
     review.user_id = form.user_id.data
     db.session.commit()
-    return review.to_dict()
+    return jsonify(review.to_dict())
   return jsonify(form.errors)
 
 
-@review_routes.route('/<int:review_id>', methods=["DELETE"])
+@review_routes.route('/delete/<int:review_id>', methods=["DELETE"])
 @login_required
 def delete_review(review_id):
   review = Review.query.get(id)
@@ -64,3 +66,8 @@ def delete_review(review_id):
   db.session.delete(review)
   db.session.commit()
   return jsonify("Successfully deleted review")
+
+@review_routes.route('/<int:review_id>', methods=['GET'])
+def review_by_id(review_id):
+  review = Review.query.get(review_id)
+  return jsonify(review.to_dict())

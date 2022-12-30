@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, NavLink } from 'react-router-dom'
 import { getAllBusinessesThunk } from "../store/business";
-// import AddBusinessModal from "./Businesses/Create";
-import CreateABusiness from "./Businesses/Create/CreateBusinessModal";
+import { getAllReviewsThunk } from "../store/review";
+
 
 const Home = () => {
 const history = useHistory()
@@ -13,6 +13,7 @@ const businesses = useSelector(state => state.business.allBusinesses)
 
 useEffect(() => {
   dispatch(getAllBusinessesThunk())
+  dispatch(getAllReviewsThunk())
 }, [dispatch])
 
 // if(!businesses){
@@ -23,7 +24,7 @@ useEffect(() => {
     <div>
       {user ?
       <button onClick={() => history.push('/business/add')}>Add a Business to Help!</button>
-      // <CreateABusiness />
+
       :
     <button>Log In</button>}
       <h1>WELCOME TO HELP!</h1>

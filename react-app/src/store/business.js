@@ -2,7 +2,7 @@ const GetAll = 'businesses/GetAll'
 const GetOne = 'businesses/GetOne'
 const CreateNew = 'businesses/CreateNew'
 const Update = 'business/Update'
-const Delete = 'business?Delete'
+const Delete = 'business/Delete'
 
 const GetAllAction = (businesses) => {
   return{
@@ -145,7 +145,7 @@ export default function businessReducer(state = initialState, action){
     case CreateNew:
       newState = { allBusinesses: { ...state.allBusinesses } }
       newState.oneBusiness = action.business
-      newState.oneBusiness
+      // newState.oneBusiness
       return newState
     case Delete:
       newState = {
