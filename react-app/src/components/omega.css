@@ -1,0 +1,29 @@
+.businesseshousingsplash{
+  display: grid;
+  grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr);
+  gap: 32px;
+}
+.revhousingsplash{
+  display: grid;
+  grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
+  gap: 32px;
+}
+
+.container-basic{
+  max-height: 300px;
+  overflow-y: auto;
+}
+.pfp-review{
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.user-review-info{
+  display: flex;
+  flex-direction: row;
+}
+
+.stars-review{
+  display: flex;
+  flex-direction: row;
+}

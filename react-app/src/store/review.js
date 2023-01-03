@@ -147,7 +147,7 @@ const reviewReducer = (state = initialState, action) => {
                 business
             }
         case LoadAllReviews:
-            action.reviews.reviews.forEach(review => {
+            action.reviews.forEach(review => {
                 allReviews[review.id] = review
             })
             return {

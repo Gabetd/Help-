@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
-from app.models import User, db, Review, Business
+from app.models import User, db, Review, Business, Review_Image
 from app.forms.review_form import ReviewForm
 
 review_routes = Blueprint('review', __name__, url_prefix='/api/review')
@@ -10,15 +10,29 @@ def get_all_reviews():
   form = ReviewForm()
   reviews = Review.query.all()
   print('**********************,reviews', reviews)
-  review_obj = [review.to_dict() for review in reviews]
-  return jsonify(review_obj)
+  # review_obj = [review.to_dict() for review in reviews]
+  review_list = []
+  for review in reviews:
+    images = Review_Image.query.filter(Review_Image.review_id == review.id).all()
+    business = Business.query.get(review.business_id)
+    user = User.query.get(review.user_id)
+    image_obj = [image.to_dict() for image in images]
+    review_list.append(review.to_dict_express(image_obj, business.to_dict(), user.to_dict()))
+  return jsonify(review_list)
 
 
 @review_routes.route('/business/<int:business_id>', methods=['GET'])
 def review_by_business_id(business_id):
-  reviews = Review.query.filter(business_id == business_id).all()
-  review_obj = [review.to_dict() for review in reviews]
-  return jsonify(review_obj)
+  reviews = Review.query.filter(Review.business_id == business_id).all()
+  # review_obj = [review.to_dict() for review in reviews]
+  review_list = []
+  for review in reviews:
+    images = Review_Image.query.filter(Review_Image.review_id == review.id).all()
+    business = Business.query.get(review.business_id)
+    user = User.query.get(review.user_id)
+    image_obj = [image.to_dict() for image in images]
+    review_list.append(review.to_dict_express(image_obj, business.to_dict(), user.to_dict()))
+  return jsonify(review_list)
 
 @review_routes.route('/new/<int:business_id>', methods=['POST'])
 @login_required
@@ -35,7 +49,11 @@ def new_review(business_id):
     )
     db.session.add(new_review)
     db.session.commit()
-    return jsonify(new_review.to_dict())
+    images = Review_Image.query.filter(Review_Image.review_id == new_review.id).all()
+    business = Business.query.get(new_review.business_id)
+    user = User.query.get(new_review.user_id)
+    image_obj = [image.to_dict() for image in images]
+    return jsonify(new_review.to_dict_express(image_obj, business.to_dict(), user.to_dict()))
   return jsonify(form.errors)
 
 @review_routes.route("/<int:review_id>", methods=["PUT"])
@@ -53,7 +71,11 @@ def edit_review(review_id):
     review.business_id = form.business_id.data,
     review.user_id = form.user_id.data
     db.session.commit()
-    return jsonify(review.to_dict())
+    images = Review_Image.query.filter(Review_Image.review_id == new_review.id).all()
+    business = Business.query.get(new_review.business_id)
+    user = User.query.get(new_review.user_id)
+    image_obj = [image.to_dict() for image in images]
+    return jsonify(review.to_dict_express(image_obj, business.to_dict(), user.to_dict()))
   return jsonify(form.errors)
 
 
@@ -70,4 +92,8 @@ def delete_review(review_id):
 @review_routes.route('/<int:review_id>', methods=['GET'])
 def review_by_id(review_id):
   review = Review.query.get(review_id)
-  return jsonify(review.to_dict())
+  images = Review_Image.query.filter(Review_Image.review_id == new_review.id).all()
+  business = Business.query.get(new_review.business_id)
+  user = User.query.get(new_review.user_id)
+  image_obj = [image.to_dict() for image in images]
+  return jsonify(review.to_dict_express(image_obj, business.to_dict(), user.to_dict()))

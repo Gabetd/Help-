@@ -25,7 +25,7 @@ class Business(db.Model):
     owner = db.relationship("User", back_populates="businesses")
 
 
-    def to_dict(self):
+    def to_dict_express(self, images, rating):
     # , images):
         return {
             "id":self.id,
@@ -38,5 +38,20 @@ class Business(db.Model):
             "state":self.state,
             "description":self.description,
             "business_type": self.business_type,
-            # "images": images
+            "images": images,
+            "rating": rating
+        }
+
+    def to_dict(self):
+        return {
+            "id":self.id,
+            "owner_id":self.owner_id,
+            "business_name":self.business_name,
+            "phone":self.phone,
+            "street_address":self.street_address,
+            "city":self.city,
+            "zipcode":self.zipcode,
+            "state":self.state,
+            "description":self.description,
+            "business_type": self.business_type,
         }

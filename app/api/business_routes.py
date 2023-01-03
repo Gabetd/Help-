@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
-from app.models import User, db, Review, Business
+from app.models import User, db, Review, Business, Business_Image
 from app.forms.business_form import BusinessForm
 
 
@@ -9,13 +9,22 @@ business_routes = Blueprint('business', __name__, url_prefix='/api/business')
 @business_routes.route('/all', methods=['GET'])
 def get_all_business():
   businesses = Business.query.all()
-  Buisness_Obj = [business.to_dict() for business in businesses]
-  return jsonify(Buisness_Obj)
+  # Buisness_Obj = [business.to_dict() for business in businesses]
+  business_list=[]
+  for business in businesses:
+    images = Business_Image.query.filter(Business_Image.business_id == business.id).all()
+    reviews = Review.query.filter(Review.business_id == business.id).all()
+    rating = [review.to_dict() for review in reviews]
+    business_list.append(business.to_dict_express(images, rating))
+  return jsonify(business_list)
 
 @business_routes.route('/<int:business_id>')
 def business_by_id(business_id):
   business = Business.query.get(business_id)
-  return jsonify(business.to_dict())
+  images = Business_Image.query.filter(Business_Image.business_id == business.id).all()
+  reviews = Review.query.filter(Review.business_id == business.id).all()
+  rating = [review.to_dict() for review in reviews]
+  return jsonify(business.to_dict_express(images, rating))
 
 @business_routes.route('/new', methods=['POST'])
 @login_required
@@ -24,7 +33,7 @@ def new_business():
   form['csrf_token'].data = request.cookies['csrf_token']
   data = form.data
   if form.validate_on_submit():
-    new_business=Business(
+    business=Business(
       owner_id = data['owner_id'],
       business_name = data['business_name'],
       phone = data['phone'],
@@ -37,7 +46,10 @@ def new_business():
     )
     db.session.add(new_business)
     db.session.commit()
-    return jsonify(new_business.to_dict())
+    images = Business_Image.query.filter(Business_Image.business_id == business.id).all()
+    reviews = Review.query.filter(Review.business_id == business.id).all()
+    rating = [review.to_dict() for review in reviews]
+    return jsonify(business.to_dict_express(images, rating))
   return jsonify(form.errors)
 
 
@@ -60,7 +72,11 @@ def edit_business(business_id):
     business.description = form.description.data,
     business.business_type = form.business_type.data
     db.session.commit()
-    return jsonify(business.to_dict())
+    business = Business.query.get(business_id)
+    images = Business_Image.query.filter(Business_Image.business_id == business.id).all()
+    reviews = Review.query.filter(Review.business_id == business.id).all()
+    rating = [review.to_dict() for review in reviews]
+    return jsonify(business.to_dict_express(images, rating))
   if not business:
     return {'errors': ['That business does not exist']}, 401
   else:

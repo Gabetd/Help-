@@ -18,12 +18,18 @@ class Review(db.Model):
   user_id = db.Column(db.Integer, nullable=False)
 
 
-  def to_dict(self, images):
+  def to_dict_express(self, images, business, user):
     return {
       "id":self.id,
       "stars": self.stars,
       "review":self.review,
-      "business_id":self.business_id,
-      "user_id":self.user_id,
+      "business":business,
+      "user":user,
       "images": images
+      }
+  def to_dict(self):
+    return {
+      "id":self.id,
+      "stars": self.stars,
+      "review":self.review,
       }
