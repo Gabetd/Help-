@@ -12,6 +12,8 @@ import Home from './components/splashPage';
 import CreateABusiness from './components/Businesses/Create/CreateBusinessModal';
 import SingleBusiness from './components/Businesses/BusinessPage';
 import EditABusiness from './components/Businesses/Edit/EditBusinessModal';
+import CreateAReview from './components/Reviews/CreateReview';
+import EditAReview from './components/Reviews/EditReview';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -31,6 +33,14 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+      <Route path='/review/edit/:reviewId' exact={true}>
+          <h2>Edit Review page</h2>
+          <EditAReview/>
+        </Route>
+      <Route path='/review/add/:businessId' exact={true}>
+        <h2>You are on create a review page</h2>
+          <CreateAReview/>
+        </Route>
       <Route path='/business/add' exact={true}>
           <CreateABusiness/>
         </Route>

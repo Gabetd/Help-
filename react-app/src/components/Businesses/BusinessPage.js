@@ -5,6 +5,7 @@ import { getAllBusinessesThunk } from "../../store/business";
 import { getSingleBusinessThunk } from "../../store/business";
 import { deleteBusinessThunk } from "../../store/business";
 import { getAllReviewsByBusinessThunk } from "../../store/review";
+import { deleteReviewThunk } from "../../store/review"
 import '../omega.css'
 
 export default function SingleBusiness(){
@@ -14,11 +15,12 @@ export default function SingleBusiness(){
   const business = useSelector(state => state.business.oneBusiness)
   const reviews = useSelector(state => state.reviews.business)
   const {businessId} = useParams()
-
+  const ratings = business.rating || []
   useEffect(() => {
     dispatch(getSingleBusinessThunk(businessId))
     dispatch(getAllReviewsByBusinessThunk(businessId))
-}, [dispatch]);
+
+  }, [dispatch]);
 
 const Remove = () => {
   dispatch(deleteBusinessThunk(businessId))
@@ -26,34 +28,78 @@ const Remove = () => {
   history.push('/')
 }
 
-const stars = (num) => {
+const average = (arr) => {
+  // console.log(arr)
+  let len = arr.length
+  if(len === 0){return 'No Reviews :('}
+  let sum = 0
+  for (let i = 0; i < len; i++){sum += arr[i].stars}
+  return ` average rating ${sum/len}`}
+
+
+  const stars = (num) => {
   if (num == 5){
-  return (<div>⭐⭐⭐⭐⭐</div>)
-  }else if (num == 4){
-  return (<div>⭐⭐⭐⭐</div>)
-  }else if (num == 3){
-  return (<div>⭐⭐⭐</div>)
-}else if (num == 2){
-  return (<div>⭐⭐</div>)
-}else if (num == 1){
-  return (<div>⭐</div>)
-}
+  return (<div>⭐⭐⭐⭐⭐</div>)}else if (num == 4){
+  return (<div>⭐⭐⭐⭐</div>)}else if (num == 3){
+  return (<div>⭐⭐⭐</div>)}else if (num == 2){
+  return (<div>⭐⭐</div>)}else if (num == 1){
+  return (<div>⭐</div>)}
 }
 
+// const aveRating = (num) => {
+//   console.log('num',num)
+//   if (num > 4.5 ){
+//   return (<div>⭐⭐⭐⭐⭐</div>)}else if (num >= 4){
+//   // return (<div>⭐⭐⭐⭐</div>)}else if (num > 3.5){
+//   return (<div>⭐⭐⭐⭐</div>)}else if (num >= 3){
+//   // return (<div>⭐⭐⭐</div>)}else if (num > 2.5){
+//   return (<div>⭐⭐⭐</div>)}else if (num >= 2){
+//   // return (<div>⭐⭐</div>)}else if (num > 1.5){
+//   return (<div>⭐⭐</div>)}else if (num >= 1){
+//   return (<div>⭐</div>)}
+//   else return (<></>)
+// }
+
+const deleteRev = (id) => {
+  dispatch(deleteReviewThunk(id))
+  dispatch(getAllReviewsByBusinessThunk(businessId))
+  history.push(`/business/${businessId}`)
+}
+const addReview = () => {
+  // DO THIS NOW
+}
+
+console.log('reviews', reviews)
+let users = Object.values(reviews).map(rev => {
+  return rev.user.id
+})
+console.log('users', users)
+const reviewed = (id) => {
+  if(users.includes(User.id)){
+    return (<></>)
+  }else{
+    return(<button onClick={() => history.push(`/review/add/${id}`)}>add a review</button>)
+  }
+
+}
+console.log('reviewed', reviewed)
+
+console.log('object vals',Object.values(reviews) )
 
 return(
   <div>
     <p>{business.id}</p>
+    <p className="work-for-not-against">{average(ratings)}</p>
     <p>{business.business_name}</p>
     <p>{business.street_address} {business.city} {business.state}</p>
     <p>{business.description}</p>
     {User.id === business.owner_id?
     <div>
-    <button onClick={() => history.push(`/business/${businessId}/edit`)}>Edit your business</button>
+    {/* <button onClick={() => history.push(`/business/${businessId}/edit`)}>Edit your business</button> */}
     <button onClick={() => Remove()}>Remove your business from Help</button>
     </div>
     :
-    <button>Leave a review NOT WORKING ATM</button>
+      reviewed(business.id)
   }
          <div className="revhousingsplash">
         {Object.values(reviews).map(rev => (
@@ -66,7 +112,14 @@ return(
             {/* <p>{rev.business.business_name}</p> */}
             <div className="stars-review">
             {stars(rev.stars)}
-            {/* <p>{rev.stars}</p> */}
+            {rev.user.id === User.id ?
+            <div>
+              <button onClick={() => deleteRev(rev.id)}> Delete your review</button>
+              <button onClick={() => history.push(`/review/edit/${rev.id}`)}> Edit Review</button>
+            </div>
+            :
+            <></>
+          }
             </div>
             <p>{rev.review}</p>
           </div>

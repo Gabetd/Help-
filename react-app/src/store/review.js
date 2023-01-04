@@ -47,10 +47,11 @@ const loadOne = (reviewId) => ({
 // THUNK action creators by business ID
 export const getAllReviewsByBusinessThunk = (businessId) => async dispatch => {
     const response = await fetch(`/api/review/business/${businessId}`)
-
+    // console.log('reviews', response)
     if (response.ok) {
         const Data = await response.json()
         dispatch(load(Data, businessId))
+        console.log('data', Data)
         return Data
     }
     return
@@ -80,6 +81,7 @@ export const createReviewThunk = (review, businessId) => async dispatch => {
     if (response.ok) {
         const Data = await response.json()
         dispatch(create(Data, businessId))
+        console.log('data =', Data)
         return Data
     }
     return
@@ -93,7 +95,7 @@ export const editReviewThunk = (review, reviewId) => async dispatch => {
         },
         body: JSON.stringify(review)
     })
-
+    console.log('inside review thunk, res =', response)
     if (response.ok) {
         const Data = await response.json()
         dispatch(edit(Data))
@@ -102,7 +104,7 @@ export const editReviewThunk = (review, reviewId) => async dispatch => {
     return
 }
 
-export const removeReviewThunk = (reviewId) => async dispatch => {
+export const deleteReviewThunk = (reviewId) => async dispatch => {
     const response = await fetch(`/api/review/delete/${reviewId}`, {
         method: 'DELETE'
     })

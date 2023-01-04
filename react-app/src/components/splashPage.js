@@ -23,18 +23,33 @@ useEffect(() => {
 // }
 
 const stars = (num) => {
-    if (num == 5){
-    return (<div>⭐⭐⭐⭐⭐</div>)
-    }else if (num == 4){
-    return (<div>⭐⭐⭐⭐</div>)
-    }else if (num == 3){
-    return (<div>⭐⭐⭐</div>)
-  }else if (num == 2){
-    return (<div>⭐⭐</div>)
-  }else if (num == 1){
-    return (<div>⭐</div>)
-  }
+  if (num === 5){
+  return (<div>⭐⭐⭐⭐⭐</div>)}else if (num === 4){
+  return (<div>⭐⭐⭐⭐</div>)}else if (num === 3){
+  return (<div>⭐⭐⭐</div>)}else if (num === 2){
+  return (<div>⭐⭐</div>)}else if (num === 1){
+  return (<div>⭐</div>)}
 }
+
+const aveRating = (num) => {
+  if (num > 4.5 ){
+  return (<div>⭐⭐⭐⭐⭐</div>)}else if (num >= 4){
+  // return (<div>⭐⭐⭐⭐</div>)}else if (num > 3.5){
+  return (<div>⭐⭐⭐⭐</div>)}else if (num >= 3){
+  // return (<div>⭐⭐⭐</div>)}else if (num > 2.5){
+  return (<div>⭐⭐⭐</div>)}else if (num >= 2){
+  // return (<div>⭐⭐</div>)}else if (num > 1.5){
+  return (<div>⭐⭐</div>)}else if (num >= 1){
+  return (<div>⭐</div>)}
+  else return (<></>)
+}
+
+const average = (arr) => {
+  let len = arr.length
+  if(len === 0){return 'No Reviews :('}
+  let sum = 0
+  for (let i = 0; i < len; i++){sum += arr[i].stars}
+  return `${sum/len}`}
 
   console.log('this is ',businesses)
   return(
@@ -43,7 +58,7 @@ const stars = (num) => {
       <button onClick={() => history.push('/business/add')}>Add a Business to Help!</button>
 
       :
-    <button>Log In</button>}
+    <></>}
       <h1>WELCOME TO HELP!</h1>
       <div className="businesseshousingsplash">
 
@@ -52,13 +67,16 @@ const stars = (num) => {
           <NavLink to={`/business/${biz.id}`}>
           <h2>image goes here</h2>
           <p>{biz.business_name}</p>
+          <p className="work-for-not-against">{aveRating(average(biz.rating))}{average(biz.rating)}</p>
           <p>{biz.street_address} {biz.city} {biz.state}</p>
           <p>{biz.description}</p>
           </NavLink>
           {user?
-          <button>Add a Review</button>
+          <div>
+
+          </div>
           :
-          <button>add review</button>
+          <></>
         }
         </div>
        ))}

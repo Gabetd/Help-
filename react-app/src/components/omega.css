@@ -27,3 +27,16 @@
   display: flex;
   flex-direction: row;
 }
+
+.work-for-not-against{
+  display: flex;
+  flex-direction: row;
+}
+.stars-create-review-page{
+  display: flex;
+  flex-direction: row;
+}
+
+.selected{
+  background-color: rgba(233, 198, 111, 0.4);
+}
