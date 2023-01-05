@@ -17,7 +17,8 @@ const NavBar = () => {
           {User ?
           <div className='navBar'>
           <NavLink to='/' exact={true} activeClassName='active'>
-            <img src={logo}/>
+            {/* <img src={logo}/> */}
+            <h2 className='HelpLogo'>Help!</h2>
           </NavLink>
             <button onClick={() => history.push('/business/add')}>Add a Business to Help!</button>
             <LogoutButton />

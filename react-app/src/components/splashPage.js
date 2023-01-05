@@ -60,8 +60,8 @@ const average = (arr) => {
       <></>
       :
     <></>}
-      <h1>WELCOME TO HELP!</h1>
-      <img className="cycleimgsplash" src="https://s3-media0.fl.yelpcdn.com/educatorphoto/ccPzYQQGD-GXSUadmL3SPw/o.jpg"/>
+      <img className="cycleimgsplash" src="https://s3-media0.fl.yelpcdn.com/educatorphoto/ccPzYQQGD-GXSUadmL3SPw/o.jpg" />
+      <h1 className="welcomeSplash" >WELCOME TO HELP!</h1>
       <div className="Businessouterhousing">
       <div className="businesseshousingsplash">
 
