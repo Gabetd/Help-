@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom'
 import { createReviewThunk } from "../../store/review";
 import { getAllReviewsByBusinessThunk } from "../../store/review";
 import { getSingleBusinessThunk } from "../../store/business";
+import { resetReview } from "../../store/review";
 import '../omega.css'
 
 
@@ -36,6 +37,7 @@ export default function CreateAReview() {
         const data = await dispatch(createReviewThunk(newReview, businessId))
         console.log(data)
     if(data){
+      dispatch(resetReview())
       dispatch(getAllReviewsByBusinessThunk(businessId))
       dispatch(getSingleBusinessThunk(businessId))
       history.push(`/business/${businessId}`)

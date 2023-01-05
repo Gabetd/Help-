@@ -71,7 +71,8 @@ def edit_review(review_id):
   form['csrf_token'].data = request.cookies['csrf_token']
   data = form.data
   print("********************************", data)
-  if form.validate_on_submit():
+  print("********************stars = ", data['stars'])
+  if review and form.validate_on_submit():
     review.stars = data['stars'],
     review.review = data['review'],
     review.business_id = data['business_id'],

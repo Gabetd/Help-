@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, NavLink } from 'react-router-dom'
 import { getAllBusinessesThunk } from "../store/business";
 import { getAllReviewsThunk } from "../store/review";
+import { resetReview } from "../store/review";
 import './omega.css'
 
 const Home = () => {
@@ -14,6 +15,7 @@ const businesses = useSelector(state => state.business.allBusinesses)
 const reviews = useSelector(state => state.reviews.allReviews)
 
 useEffect(() => {
+  dispatch(resetReview())
   dispatch(getAllBusinessesThunk())
   dispatch(getAllReviewsThunk())
 }, [dispatch])
@@ -59,6 +61,8 @@ const average = (arr) => {
       :
     <></>}
       <h1>WELCOME TO HELP!</h1>
+      <img className="cycleimgsplash" src="https://s3-media0.fl.yelpcdn.com/educatorphoto/ccPzYQQGD-GXSUadmL3SPw/o.jpg"/>
+      <div className="Businessouterhousing">
       <div className="businesseshousingsplash">
 
       {Object.values(businesses).map(biz => (
@@ -82,7 +86,11 @@ const average = (arr) => {
         </div>
        ))}
          </div>
+         </div>
+         <h2 id="revHeading">Reviews</h2>
+         <div className="revOuterHousing">
        <div className="revhousingsplash">
+
         {Object.values(reviews).map(rev => (
           <div key={rev.id} className='container-basic'>
             {/* <h2>User Info Here</h2> */}
@@ -102,6 +110,7 @@ const average = (arr) => {
             </div>
           </div>
         ))}
+       </div>
        </div>
     </div>
   )
