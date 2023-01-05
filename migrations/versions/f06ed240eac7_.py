@@ -34,6 +34,7 @@ def upgrade():
     )
     op.create_table('businesses',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('preview_img', sa.String(length=2000), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.Column('business_name', sa.String(length=100), nullable=False),
     sa.Column('phone', sa.String(length=12), nullable=False),

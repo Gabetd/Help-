@@ -19,7 +19,7 @@ export default function EditAReview() {
     // console.log('Clicked')
     const [validationErrors, setValidationErrors] = useState([])
     // const rev = allReviews.find(el => el.id === reviewId)
-    const rev = {id:4}
+    const rev = {business_id:2}
     console.log('review', allReviews)
     /* Validation errors for form */
     useEffect(() => {
@@ -35,6 +35,7 @@ export default function EditAReview() {
       console.log('made it to submit')
         e.preventDefault();
         const newReview = {
+          id: reviewId,
           stars,
           review,
           business_id: rev.business_id,

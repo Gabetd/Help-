@@ -7,8 +7,10 @@ review_routes = Blueprint('review', __name__, url_prefix='/api/review')
 
 @review_routes.route('/all', methods=['GET'])
 def get_all_reviews():
-  form = ReviewForm()
+  # form = ReviewForm()
   reviews = Review.query.all()
+  if not reviews:
+    return {'errors': ['No reviews found']}, 401
   print('**********************,reviews', reviews)
   # review_obj = [review.to_dict() for review in reviews]
   review_list = []
@@ -21,9 +23,12 @@ def get_all_reviews():
   return jsonify(review_list)
 
 
+
 @review_routes.route('/business/<int:business_id>', methods=['GET'])
 def review_by_business_id(business_id):
   reviews = Review.query.filter(Review.business_id == business_id).all()
+  if not reviews:
+    return {'errors': ['No reviews found']}, 401
   # review_obj = [review.to_dict() for review in reviews]
   review_list = []
   for review in reviews:
@@ -59,17 +64,18 @@ def new_review(business_id):
 @review_routes.route("/<int:review_id>", methods=["PUT"])
 @login_required
 def edit_review(review_id):
-  review= Review.query.get(review_id)
+  form = ReviewForm()
+  review = Review.query.get(review_id)
   if not review:
     return {'errors': ['That review does not exist']}, 401
-  form = ReviewForm()
   form['csrf_token'].data = request.cookies['csrf_token']
+  data = form.data
+  print("********************************", data)
   if form.validate_on_submit():
-    # data = form.data
-    review.stars = form.stars.data,
-    review.review = form.review.data,
-    review.business_id = form.business_id.data,
-    review.user_id = form.user_id.data
+    review.stars = data['stars'],
+    review.review = data['review'],
+    review.business_id = data['business_id'],
+    review.user_id = data['user_id']
     db.session.commit()
     images = Review_Image.query.filter(Review_Image.review_id == new_review.id).all()
     business = Business.query.get(new_review.business_id)
@@ -92,6 +98,8 @@ def delete_review(review_id):
 @review_routes.route('/<int:review_id>', methods=['GET'])
 def review_by_id(review_id):
   review = Review.query.get(review_id)
+  if not review:
+    return {'errors': ['That review does not exist']}, 401
   images = Review_Image.query.filter(Review_Image.review_id == new_review.id).all()
   business = Business.query.get(new_review.business_id)
   user = User.query.get(new_review.user_id)

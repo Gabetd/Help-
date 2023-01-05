@@ -54,6 +54,7 @@ export default function CreateAReview() {
 
     return (
         <form onSubmit={handleSubmit}>
+          <div className="ReviewPage">
             <div>
         {validationErrors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -81,6 +82,7 @@ export default function CreateAReview() {
             <div>
             <button type="submit" disabled={validationErrors.length}>Create</button>
             </div>
+          </div>
         </form>
 
     )

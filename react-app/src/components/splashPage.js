@@ -55,22 +55,23 @@ const average = (arr) => {
   return(
     <div>
       {user ?
-      <button onClick={() => history.push('/business/add')}>Add a Business to Help!</button>
-
+      <></>
       :
     <></>}
       <h1>WELCOME TO HELP!</h1>
       <div className="businesseshousingsplash">
 
       {Object.values(businesses).map(biz => (
-        <div key={biz.id}>
+        <div className='LittleBusiness' key={biz.id}>
+          <img className="businessImgSplashPage" src={biz.preview_img} />
+          <div className="spacerforbusiness">
           <NavLink to={`/business/${biz.id}`}>
-          <h2>image goes here</h2>
           <p>{biz.business_name}</p>
-          <p className="work-for-not-against">{aveRating(average(biz.rating))}{average(biz.rating)}</p>
-          <p>{biz.street_address} {biz.city} {biz.state}</p>
-          <p>{biz.description}</p>
           </NavLink>
+          <p className="work-for-not-against">{aveRating(average(biz.rating))}{average(biz.rating)}</p>
+          </div>
+          {/* <p>{biz.street_address} {biz.city} {biz.state}</p>
+          <p>{biz.description}</p> */}
           {user?
           <div>
 

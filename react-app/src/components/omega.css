@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr);
   gap: 32px;
+
 }
 .revhousingsplash{
   display: grid;
@@ -39,4 +40,26 @@
 
 .selected{
   background-color: rgba(233, 198, 111, 0.4);
+}
+
+.ReviewPage{
+  background-color: antiquewhite;
+}
+
+.businessImgSplashPage{
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.LittleBusiness{
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 20px;
+  margin: 5%;
+}
+
+.spacerforbusiness{
+  margin-top: 20px;
 }

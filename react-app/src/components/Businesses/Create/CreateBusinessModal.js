@@ -63,6 +63,7 @@ export default function CreateABusiness() {
         ))}
       </div>
             <h2>Buisness Information</h2>
+            <h3>GO BACK TO CREATE BUSINESS MODAL.JS TO FIX THIS</h3>
             <label>
                 <input
                     placeholder="business name"
@@ -119,7 +120,7 @@ export default function CreateABusiness() {
             </label>
             <label>
                 <input
-                    placeholder=" Business Description"
+                    placeholder="Business Description"
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -127,13 +128,14 @@ export default function CreateABusiness() {
                 />
             </label>
             <label>
-            <select name="type"
+            <select name="Type"
+            // placeho="Business Type"
             onChange={(e) => setType(e.target.value)}>
-              <option value="">--Business Type--</option>
+              {/* <option value="">-- --</option> */}
+              <option value="Restaurant">Restaurant</option>
               <option value="Vehicle Repair">Vehicle Repair</option>
               <option value="Home Repair">Home Repair</option>
               <option value="Self Care">Self Care</option>
-              <option value="Restaurant">Restaurant</option>
             </select>
             </label>
             <div>

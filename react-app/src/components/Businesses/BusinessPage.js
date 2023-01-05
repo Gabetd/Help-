@@ -14,6 +14,7 @@ export default function SingleBusiness(){
   const User = useSelector(state => state.session.user)
   const business = useSelector(state => state.business.oneBusiness)
   const reviews = useSelector(state => state.reviews.business)
+  const [hasClicked, setHasClicked] = useState(false)
   const {businessId} = useParams()
   const ratings = business.rating || []
   useEffect(() => {
@@ -63,7 +64,8 @@ const average = (arr) => {
 const deleteRev = (id) => {
   dispatch(deleteReviewThunk(id))
   dispatch(getAllReviewsByBusinessThunk(businessId))
-  history.push(`/business/${businessId}`)
+  window.location.reload(false);
+  // history.push(`/business/${businessId}`)
 }
 const addReview = () => {
   // DO THIS NOW

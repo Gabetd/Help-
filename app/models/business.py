@@ -12,6 +12,7 @@ class Business(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    preview_img = db.Column(db.String(2000), nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     business_name = db.Column(db.String(100), nullable=False)
     phone = db.Column(db.String(12), nullable=False)
@@ -29,6 +30,7 @@ class Business(db.Model):
     # , images):
         return {
             "id":self.id,
+            "preview_img": self.preview_img,
             "owner_id":self.owner_id,
             "business_name":self.business_name,
             "phone":self.phone,
@@ -45,6 +47,7 @@ class Business(db.Model):
     def to_dict(self):
         return {
             "id":self.id,
+            "preview_img": self.preview_img,
             "owner_id":self.owner_id,
             "business_name":self.business_name,
             "phone":self.phone,

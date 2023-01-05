@@ -5,6 +5,7 @@ from app.models.business import Business
 
 class BusinessForm(FlaskForm):
   owner_id = IntegerField('Owner_Id', validators=[DataRequired()])
+  preview_img = StringField('Preview_Img', validators=[DataRequired()])
   business_name = StringField('Business_Name', validators=[DataRequired()])
   phone = StringField('Phone', validators=[DataRequired()])
   street_address = StringField('Street_Address', validators=[DataRequired()])
