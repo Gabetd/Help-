@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom'
 import { createBusinessThunk } from "../../../store/business";
 import { getSingleBusinessThunk } from "../../../store/business";
-
+import '../../omega.css'
 
 
 export default function CreateABusiness() {
@@ -12,6 +12,7 @@ export default function CreateABusiness() {
     const User = useSelector(state => state.session.user)
     // const [ownerId, setOwnerId] = useState('');
     const [businessName,setBusinessName] = useState('');
+    const [Img, setImg] = useState('');
     const [phone,setPhone] = useState('');
     const [streetAddress,setStreetAddress] = useState('');
     const [city,setCity] = useState('');
@@ -34,6 +35,7 @@ export default function CreateABusiness() {
         e.preventDefault();
         const business = {
           owner_id: User.id,
+          preview_img: Img,
           business_name: businessName,
           phone,
           street_address: streetAddress,
@@ -56,16 +58,17 @@ export default function CreateABusiness() {
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <form className="CreateForm" onSubmit={handleSubmit}>
+            <div >
         {validationErrors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
             <h2>Buisness Information</h2>
-            <h3>GO BACK TO CREATE BUSINESS MODAL.JS TO FIX THIS</h3>
+            {/* <h3>GO BACK TO CREATE BUSINESS MODAL.JS TO FIX THIS</h3> */}
             <label>
                 <input
+                    className="input"
                     placeholder="business name"
                     type="text"
                     value={businessName}
@@ -74,7 +77,18 @@ export default function CreateABusiness() {
                 />
             </label>
             <label>
+            <input
+                    className="input"
+                    placeholder="Preview Image"
+                    type="text"
+                    value={Img}
+                    onChange={(e) => setImg(e.target.value)}
+                    required
+                />
+            </label>
+            <label>
                 <input
+                    className="input"
                     placeholder="Phone Number"
                     type="text"
                     value={phone}
@@ -84,6 +98,7 @@ export default function CreateABusiness() {
             </label>
             <label>
                 <input
+                    className="input"
                     placeholder="Address"
                     type="text"
                     value={streetAddress}
@@ -93,6 +108,7 @@ export default function CreateABusiness() {
             </label>
             <label>
                 <input
+                    className="input"
                     placeholder="City"
                     type="text"
                     value={city}
@@ -102,6 +118,7 @@ export default function CreateABusiness() {
             </label>
             <label>
                 <input
+                    className="input"
                     placeholder="Zipcode"
                     type="text"
                     value={zipcode}
@@ -111,6 +128,7 @@ export default function CreateABusiness() {
             </label>
             <label>
                 <input
+                    className="input"
                     placeholder="State"
                     type="text"
                     value={state}
@@ -120,6 +138,7 @@ export default function CreateABusiness() {
             </label>
             <label>
                 <input
+                    className="input"
                     placeholder="Business Description"
                     type="text"
                     value={description}

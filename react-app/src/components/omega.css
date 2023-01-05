@@ -13,6 +13,9 @@
 .container-basic{
   max-height: 300px;
   overflow-y: auto;
+  border: 1px solid black;
+  max-height: 500px;
+  margin: 5%;
 }
 .pfp-review{
   max-width: 50px;
@@ -62,4 +65,27 @@
 
 .spacerforbusiness{
   margin-top: 20px;
+}
+
+html{
+  background-color: azure;
+}
+
+.CreateForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: black; */
+  height: 700px;
+
+}
+
+.input{
+  height: 30px;
+  width: 500px;
+  padding: 1em;
+  margin: 1em;
+  border: 2px solid lightblue;
+  border-radius: 1em;
 }

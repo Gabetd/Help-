@@ -35,6 +35,7 @@ def new_business():
   if form.validate_on_submit():
     business=Business(
       owner_id = data['owner_id'],
+      preview_img = data['preview_img'],
       business_name = data['business_name'],
       phone = data['phone'],
       street_address = data['street_address'],

@@ -58,6 +58,8 @@ const LoginForm = () => {
           value={password}
           onChange={updatePassword}
         />
+        <button onClick={() => {dispatch(login('demo@aa.io', 'password'))}}
+        >Login as Demo User</button>
         <button type='submit'>Login</button>
       </div>
     </form>
