@@ -86,6 +86,7 @@ const average = (arr) => {
         {Object.values(reviews).map(rev => (
           <div key={rev.id} className='container-basic'>
             {/* <h2>User Info Here</h2> */}
+            <div className="reviewinfo">
             <div className="user-review-info">
             <img className="pfp-review" src="https://media.istockphoto.com/id/1210939712/vector/user-icon-people-icon-isolated-on-white-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=vKDH9j7PPMN-AiUX8vsKlmOonwx7wjqdKiLge7PX1ZQ="/>
             <p>{rev.user.username}</p>
@@ -98,6 +99,7 @@ const average = (arr) => {
             {/* <p>{rev.stars}</p> */}
             </div>
             <p>{rev.review}</p>
+            </div>
           </div>
         ))}
        </div>

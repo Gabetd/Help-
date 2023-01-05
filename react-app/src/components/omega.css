@@ -45,13 +45,13 @@
   background-color: rgba(233, 198, 111, 0.4);
 }
 
-.ReviewPage{
-  background-color: antiquewhite;
-}
+
 
 .businessImgSplashPage{
   max-width: 100px;
   max-height: 100px;
+  border-radius: 1em;
+  margin-right: 2em;
 }
 
 .LittleBusiness{
@@ -88,4 +88,8 @@ html{
   margin: 1em;
   border: 2px solid lightblue;
   border-radius: 1em;
+}
+
+.reviewinfo{
+  margin: 2em;
 }

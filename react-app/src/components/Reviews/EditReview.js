@@ -54,15 +54,17 @@ export default function EditAReview() {
 
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="CreateForm" onSubmit={handleSubmit}>
+          <div className="ReviewPage">
             <div>
         {validationErrors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-            <h2>Review</h2>
+            <h2>Change your Review</h2>
             <label>
                 <input
+                    className="input"
                     placeholder="Review"
                     type="text"
                     value={review}
@@ -81,6 +83,7 @@ export default function EditAReview() {
             </label>
             <div>
             <button type="submit" disabled={validationErrors.length}>Create</button>
+            </div>
             </div>
         </form>
 
