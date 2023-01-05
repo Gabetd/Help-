@@ -14,7 +14,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
@@ -96,7 +96,7 @@ const SignUpForm = () => {
           value={repeatPassword}
           required={true}
         ></input>
-      <span className='newButton' type='submit'>Sign Up</span>
+      <span className='newButton' onClick={() => onSignUp()} type='submit'>Sign Up</span>
       </div>
       <div className='AuthImg'>
         <img src='https://s3-media0.fl.yelpcdn.com/assets/2/www/img/7922e77f338d/signup/signup_illustration.png'/>
