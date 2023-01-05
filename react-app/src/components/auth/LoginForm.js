@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { login } from '../../store/session';
 import { getAllBusinessesThunk } from '../../store/business';
-
+import '../omega.css'
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
@@ -34,33 +34,46 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={onLogin}>
+      <div className='AuthTop'>
+      <NavLink to='/' exact={true} activeClassName='active'>
+        <h1 className='HelpLogo'> HELP! </h1>
+      </NavLink>
+      </div>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
+      <div className='AuthContainer'>
+        <div className='AuthInfo'>
+
+
+        {/* <label htmlFor='email'>Email</label> */}
         <input
-          name='email'
-          type='text'
+          className='AuthInput'
+          // name='email'
+          // type='text'
           placeholder='Email'
           value={email}
           onChange={updateEmail}
         />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
+
+        {/* <label htmlFor='password'>Password</label> */}
         <input
-          name='password'
-          type='password'
+          className='AuthInput'
+          // name='password'
+          // type='password'
           placeholder='Password'
           value={password}
           onChange={updatePassword}
         />
-        <button onClick={() => {dispatch(login('demo@aa.io', 'password'))}}
-        >Login as Demo User</button>
-        <button type='submit'>Login</button>
+        <span className='newButton' onClick={() => {dispatch(login('demo@aa.io', 'password'))}}
+        >Login as Demo User</span>
+        <span className='newButton' type='submit'>Login</span>
+      </div>
+      <div className='AuthImg'>
+        <img src='https://s3-media0.fl.yelpcdn.com/assets/2/www/img/7922e77f338d/signup/signup_illustration.png'/>
+      </div>
       </div>
     </form>
   );

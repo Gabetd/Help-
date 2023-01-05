@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import '../omega.css'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -44,49 +45,63 @@ const SignUpForm = () => {
 
   return (
     <form onSubmit={onSignUp}>
+      <div className='AuthTop'>
+      <NavLink to='/' exact={true} activeClassName='active'>
+        <h1 className='HelpLogo'> HELP! </h1>
+      </NavLink>
+      </div>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <label>User Name</label>
+      <div className='AuthContainer'>
+      <div className='AuthInfo'>
+        {/* <label>User Name</label> */}
         <input
+        className='AuthInput'
           type='text'
           name='username'
+          placeholder='username'
           onChange={updateUsername}
           value={username}
         ></input>
-      </div>
-      <div>
-        <label>Email</label>
+        {/* <label>Email</label> */}
         <input
+        className='AuthInput'
           type='text'
           name='email'
+          placeholder='email'
           onChange={updateEmail}
           value={email}
         ></input>
-      </div>
-      <div>
-        <label>Password</label>
+
+        {/* <label>Password</label> */}
         <input
+        className='AuthInput'
           type='password'
           name='password'
+          placeholder='password'
           onChange={updatePassword}
           value={password}
         ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
+
+        {/* <label>Repeat Password</label> */}
         <input
+        className='AuthInput'
           type='password'
           name='repeat_password'
+          placeholder='repeat password'
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
         ></input>
+      <span className='newButton' type='submit'>Sign Up</span>
       </div>
-      <button type='submit'>Sign Up</button>
+      <div className='AuthImg'>
+        <img src='https://s3-media0.fl.yelpcdn.com/assets/2/www/img/7922e77f338d/signup/signup_illustration.png'/>
+      </div>
+      </div>
     </form>
   );
 };
