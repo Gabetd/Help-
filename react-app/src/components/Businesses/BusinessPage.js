@@ -14,8 +14,9 @@ export default function SingleBusiness(){
   const User = useSelector(state => state.session.user)
   const business = useSelector(state => state.business.oneBusiness)
   const reviews = useSelector(state => state.reviews.business)
-  const [hasClicked, setHasClicked] = useState(false)
+  // const [hasClicked, setHasClicked] = useState(false)
   const {businessId} = useParams()
+  console.log(businessId)
   const ratings = business.rating || []
   useEffect(() => {
     dispatch(getSingleBusinessThunk(businessId))
@@ -71,20 +72,24 @@ const addReview = () => {
   // DO THIS NOW
 }
 
-console.log('reviews', reviews)
-let users = Object.values(reviews).map(rev => {
-  return rev.user.id
-})
-console.log('users', users)
-const reviewed = (id) => {
-  if(users.includes(User.id)){
-    return (<></>)
-  }else{
-    return(<button onClick={() => history.push(`/review/add/${id}`)}>add a review</button>)
-  }
+let reviewed;
+if(User){
 
+  console.log('reviews', reviews)
+  let users = Object.values(reviews).map(rev => {
+    return rev.user.id
+  })
+  console.log('users', users)
+  reviewed = (id) => {
+    if(users.includes(User.id)){
+      return (<></>)
+    }else{
+      return(<button onClick={() => history.push(`/review/add/${id}`)}>add a review</button>)
+    }
+
+  }
+  console.log('reviewed', reviewed)
 }
-console.log('reviewed', reviewed)
 
 console.log('object vals',Object.values(reviews) )
 

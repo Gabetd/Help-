@@ -60,7 +60,9 @@ const average = (arr) => {
       <></>
       :
     <></>}
-      <img className="cycleimgsplash" src="https://s3-media0.fl.yelpcdn.com/educatorphoto/ccPzYQQGD-GXSUadmL3SPw/o.jpg" />
+      {/* <img className="cycleimgsplash" src="https://s3-media0.fl.yelpcdn.com/educatorphoto/ccPzYQQGD-GXSUadmL3SPw/o.jpg" /> */}
+      <img className="cycleimgsplash" src="https://s3-media0.fl.yelpcdn.com/educatorphoto/IJElscsPxKRiQJFwUADA-w/o.jpg"/>
+      {/* <img className="cycleimgsplash" src="https://s3-media0.fl.yelpcdn.com/educatorphoto/xL0l_4tg4DdhuHT9S-Kt_w/o.jpg"/> */}
       <h1 className="welcomeSplash" >WELCOME TO HELP!</h1>
       <div className="Businessouterhousing">
       <div className="businesseshousingsplash">

@@ -35,7 +35,6 @@ export default function EditAReview() {
       console.log('made it to submit')
         e.preventDefault();
         const newReview = {
-          id: reviewId,
           stars,
           review,
           business_id: rev.business_id,

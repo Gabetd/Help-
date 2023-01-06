@@ -16,23 +16,30 @@ const NavBar = () => {
 
           {User ?
           <div className='navBar'>
+            <div>
           <NavLink to='/' exact={true} activeClassName='active'>
-            {/* <img src={logo}/> */}
             <h2 className='HelpLogo'>Help!</h2>
           </NavLink>
-            <button onClick={() => history.push('/business/add')}>Add a Business to Help!</button>
+            </div>
+            <div className='secondarynavstuff'>
+            <button className="oldButton" onClick={() => history.push('/business/add')}>Add a Business to Help!</button>
             <LogoutButton />
+            </div>
           </div>:
           <div className='navBar'>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            <img src={logo}/>
-          </NavLink>
+          <div>
+        <NavLink to='/' exact={true} activeClassName='active'>
+          <h2 className='HelpLogo'>Help!</h2>
+        </NavLink>
+          </div>
+          <div className='secondarynavstuff'>
           <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
+            <button className="oldButton">Login</button>
           </NavLink>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
+            <span className="newButton">Sign Up</span>
           </NavLink>
+          </div>
           </div>
           }
 

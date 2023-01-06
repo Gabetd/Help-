@@ -24,9 +24,10 @@
   top: 0;
   width: 100%;
   min-width: 1607px;
+  max-height: 800px;
   z-index: -1;
 }
-.revOuterHousing{
+.rmaxevOuterHousing{
   display: flex;
   justify-content: center;
   margin-top: 5em;
@@ -48,7 +49,7 @@
   flex-direction: row;
 }
 .welcomeSplash{
-  margin-top: 1200px;
+  margin-top: 760px;
   margin-left: 40%;
 }
 
@@ -181,6 +182,9 @@ width: 100%;
 border-radius: 3px;
 margin: .5em;
 background-color:red;
+font-size: large;
+font-weight: bolder;
+color: white;
 }
 
 .newButton:hover{
@@ -196,4 +200,77 @@ background-color: rgba(205, 10, 10, 1);
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.navBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.secondarynavstuff{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  /* height: */
+  /* padding: 40px; */
+  flex-direction: row;
+}
+
+#logout{
+  font-size: large;
+  font-weight: bolder;
+  color: aliceblue;
+}
+
+.reviewBox{
+  border: 1px solid black;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.reviewinput{
+  background-color: aqua;
+  border: none;
+  height: 370px;
+  width: 625px;
+}
+.reviewInputContents{
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  /* display: flex; */
+  font-size: 16px;
+  line-height: 22px;
+  outline: none;
+  border: 0;
+  width: 625px;
+  height: 370px;
+  max-width: 625px;
+  padding: 0;
+  /* resize: none; */
+  flex-wrap: wrap;
+  word-break: break-all;
+  color: rgba(45,46,47,1);
+}
+
+.oldButton{
+  background-color: rgba(0, 0, 0, 0);
+  padding: .5em;
+  border: 0px solid grey;
+  width: 100%;
+  border-radius: 3px;
+  /* margin: .5em; */
+  /* border: none; */
+  font-weight: bolder;
+  font-size: large;
+  color: white;
+  margin-right: 30px;
+}
+.oldButton:hover{
+  background-color: rgba(150, 150, 150, .8);
+
 }

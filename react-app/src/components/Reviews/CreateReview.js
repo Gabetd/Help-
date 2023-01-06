@@ -12,12 +12,16 @@ export default function CreateAReview() {
     const dispatch = useDispatch()
     const history = useHistory()
     const User = useSelector(state => state.session.user)
+    const BizName = useSelector(state => state.business.oneBusiness.business_name)
     const [review, setReview] = useState('');
     const [stars,setStars] = useState('');
     const {businessId} = useParams()
     // console.log('Clicked')
     const [validationErrors, setValidationErrors] = useState([])
 
+    useEffect(()=> {
+      dispatch(getSingleBusinessThunk(businessId))
+    }, [dispatch])
     /* Validation errors for form */
     useEffect(() => {
         const validationErrors = [];
@@ -39,7 +43,6 @@ export default function CreateAReview() {
     if(data){
       dispatch(resetReview())
       dispatch(getAllReviewsByBusinessThunk(businessId))
-      dispatch(getSingleBusinessThunk(businessId))
       history.push(`/business/${businessId}`)
     }
     }
@@ -57,22 +60,14 @@ export default function CreateAReview() {
     return (
         <form className="CreateForm" onSubmit={handleSubmit}>
           <div className="ReviewPage">
-            <div>
         {validationErrors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-            <h2>Add A Review</h2>
-            <label>
-                <input
-                    className="input"
-                    placeholder="Review"
-                    type="text"
-                    value={review}
-                    onChange={(e) => setReview(e.target.value)}
-                    required
-                />
-            </label>
+      <div>
+
+            <h2>{BizName}</h2>
+            <div className="reviewBox">
             <label>
               <div className="stars-create-review-page">
                 <span id="1" onClick={() => {setStars(1); console.log(stars)}}>⭐</span>
@@ -82,6 +77,18 @@ export default function CreateAReview() {
                 <span id="5" onClick={() => {setStars(5); console.log(stars)}}>⭐</span>
               </div>
             </label>
+            <label className="reviewinput">
+                <textarea
+                    className="reviewInputContents"
+                    placeholder="Review"
+                    type="text"
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
+                    required
+                    />
+            </label>
+
+                    </div>
             <div>
             <button type="submit" disabled={validationErrors.length}>Create</button>
             </div>

@@ -96,11 +96,11 @@ export const editReviewThunk = (review, reviewId) => async dispatch => {
         body: JSON.stringify(review)
     })
     console.log(review)
-    // console.log('inside edit review thunk, res =', response)
+    console.log('inside edit review thunk, res =', response)
     if (response.ok) {
         const Data = await response.json()
         dispatch(edit(Data))
-        // console.log('edit review data =', Data)
+        console.log('edit review data =', Data)
         return Data
     }
     return
