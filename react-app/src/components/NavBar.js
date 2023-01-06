@@ -1,15 +1,20 @@
 
 import React, { useState } from 'react';
 import { useHistory, NavLink } from 'react-router-dom';
-import {useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import LogoutButton from './auth/LogoutButton';
+import { resetReview } from '../store/review';
 import logo from './logo/logo.png'
 
 
 const NavBar = () => {
   const history = useHistory()
+  const dispatch = useDispatch()
   const User = useSelector(state => state.session.user)
 
+  const restore = () =>{
+    dispatch(resetReview())
+  }
   return (
     <nav>
       <div>
@@ -18,11 +23,11 @@ const NavBar = () => {
           <div className='navBar'>
             <div>
           <NavLink to='/' exact={true} activeClassName='active'>
-            <h2 className='HelpLogo'>Help!</h2>
+            <h2 className='HelpLogo' onClick={()=> restore()}>Help!</h2>
           </NavLink>
             </div>
             <div className='secondarynavstuff'>
-            <button className="oldButton" onClick={() => history.push('/business/add')}>Add a Business to Help!</button>
+            <button className="oldButton" onClick={() => history.push('/business/add')}>Add a Business!</button>
             <LogoutButton />
             </div>
           </div>:
@@ -37,7 +42,7 @@ const NavBar = () => {
             <button className="oldButton">Login</button>
           </NavLink>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            <span className="newButton">Sign Up</span>
+            <span className="newButtontwo">Sign Up</span>
           </NavLink>
           </div>
           </div>

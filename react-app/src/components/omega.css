@@ -154,6 +154,7 @@ html{
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
 
 .AuthInfo{
@@ -175,26 +176,7 @@ width: 100%;
 border-radius: 3px;
 margin: .5em;
 }
-.newButton{
-padding: .5em;
-border: .3px solid grey;
-width: 100%;
-border-radius: 3px;
-margin: .5em;
-background-color:red;
-font-size: large;
-font-weight: bolder;
-color: white;
-}
 
-.newButton:hover{
-padding: .5em;
-border: .3px solid grey;
-width: 100%;
-border-radius: 3px;
-margin: .5em;
-background-color: rgba(205, 10, 10, 1);
-}
 
 .AuthInfoSign{
   display: flex;
@@ -258,10 +240,12 @@ background-color: rgba(205, 10, 10, 1);
 }
 
 .oldButton{
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(150, 150, 150, .8);
+  justify-content: center;
   padding: .5em;
   border: 0px solid grey;
-  width: 100%;
+  width: 350px;
+  height: 41px;
   border-radius: 3px;
   /* margin: .5em; */
   /* border: none; */
@@ -271,6 +255,49 @@ background-color: rgba(205, 10, 10, 1);
   margin-right: 30px;
 }
 .oldButton:hover{
-  background-color: rgba(150, 150, 150, .8);
-
+  background-color: rgba(150, 150, 150, .9);
+  width: 350px;
 }
+
+.newButtontwo{
+  display: flex;
+  padding: .5em;
+  border: .3px solid grey;
+  width: 145px;
+  border-radius: 3px;
+  margin: .5em;
+  background-color:red;
+  font-size: large;
+  font-weight: bolder;
+  color: white;
+  justify-content: center;
+  }
+
+  .newButtontwo:hover{
+  /* padding: .5em; */
+  /* border: .3px solid grey;
+  border-radius: 3px;
+  margin: .5em; */
+  background-color: rgba(205, 10, 10, 1);
+  }
+  .newButton{
+    display: flex;
+    padding: .5em;
+    border: .3px solid grey;
+    width: 100%;
+    border-radius: 3px;
+    margin: .5em;
+    background-color:red;
+    font-size: large;
+    font-weight: bolder;
+    color: white;
+    justify-content: center;
+    }
+
+    .newButton:hover{
+    /* padding: .5em; */
+    /* border: .3px solid grey;
+    border-radius: 3px;
+    margin: .5em; */
+    background-color: rgba(205, 10, 10, 1);
+    }

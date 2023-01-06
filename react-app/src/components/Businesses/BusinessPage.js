@@ -72,15 +72,13 @@ const addReview = () => {
   // DO THIS NOW
 }
 
-let reviewed;
-if(User){
 
   console.log('reviews', reviews)
   let users = Object.values(reviews).map(rev => {
     return rev.user.id
   })
   console.log('users', users)
-  reviewed = (id) => {
+  let reviewed = (id) => {
     if(users.includes(User.id)){
       return (<></>)
     }else{
@@ -88,12 +86,11 @@ if(User){
     }
 
   }
-  console.log('reviewed', reviewed)
-}
 
-console.log('object vals',Object.values(reviews) )
 
-return(
+
+
+if (User){return(
   <div>
     <p>{business.id}</p>
     <p className="work-for-not-against">{average(ratings)}</p>
@@ -134,6 +131,35 @@ return(
         ))}
        </div>
   </div>
-)
+)}else{
 
+
+return(
+  <div>
+    <p>{business.id}</p>
+    <p className="work-for-not-against">{average(ratings)}</p>
+    <p>{business.business_name}</p>
+    <p>{business.street_address} {business.city} {business.state}</p>
+    <p>{business.description}</p>
+
+
+         <div className="revhousingsplash">
+         {Object.values(reviews).map(rev => (
+          <div key={rev.id} className='container-basic'>
+            <div className="reviewinfo">
+            <div className="user-review-info">
+            <img className="pfp-review" src="https://media.istockphoto.com/id/1210939712/vector/user-icon-people-icon-isolated-on-white-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=vKDH9j7PPMN-AiUX8vsKlmOonwx7wjqdKiLge7PX1ZQ="/>
+            <p>{rev.user.username}</p>
+            </div>
+            <div className="stars-review">
+            {stars(rev.stars)}
+            </div>
+            <p>{rev.review}</p>
+            </div>
+          </div>
+        ))}
+       </div>
+  </div>
+)
+}
 }
