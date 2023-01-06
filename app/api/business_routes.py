@@ -45,7 +45,7 @@ def new_business():
       description = data['description'],
       business_type = data['business_type']
     )
-    db.session.add(new_business)
+    db.session.add(business)
     db.session.commit()
     images = Business_Image.query.filter(Business_Image.business_id == business.id).all()
     reviews = Review.query.filter(Review.business_id == business.id).all()

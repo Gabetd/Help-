@@ -33,7 +33,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-      <Route path='/review/edit/:reviewId' exact={true}>
+      <Route path='/review/edit/:reviewId/business/:businessId' exact={true}>
           <h2>Edit Review page</h2>
           <EditAReview/>
         </Route>

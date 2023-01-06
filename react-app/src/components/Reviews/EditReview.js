@@ -61,25 +61,28 @@ export default function EditAReview() {
         ))}
       </div>
             <h2>Change your Review</h2>
+            <div className="reviewBox">
             <label>
-                <input
-                    className="input"
+            <div class="product-review-stars">
+              <input type="radio" id="star5" name="rating" onClick={() => setStars(5)} value="5" class="hidden" /><label className="baseStar" for="star5" title="Great">★</label>
+              <input type="radio" id="star4" name="rating" onClick={() => setStars(4)} value="4" class="hidden" /><label className="baseStar" for="star4" title="Good">★</label>
+              <input type="radio" id="star3" name="rating" onClick={() => setStars(3)} value="3" class="hidden" /><label className="baseStar" for="star3" title="Ok">★</label>
+              <input type="radio" id="star2" name="rating" onClick={() => setStars(2)} value="2" class="hidden" /><label className="baseStar" for="star2" title="Could've Been Better">★</label>
+              <input type="radio" id="star1" name="rating" onClick={() => setStars(1)} value="1" class="hidden" /><label className="baseStar" for="star1" title="Not Good">★</label>
+            </div>
+            </label>
+            <label className="reviewinput">
+                <textarea
+                    className="reviewInputContents"
                     placeholder="Review"
                     type="text"
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
                     required
-                />
+                    />
             </label>
-            <label>
-              <div className="stars-create-review-page">
-                <span id="1" onClick={() => setStars(1)}>⭐</span>
-                <span id="2" onClick={() => setStars(2)}>⭐</span>
-                <span id="3" onClick={() => setStars(3)}>⭐</span>
-                <span id="4" onClick={() => setStars(4)}>⭐</span>
-                <span id="5" onClick={() => setStars(5)}>⭐</span>
-              </div>
-            </label>
+
+                    </div>
             <div>
             <button type="submit" disabled={validationErrors.length}>Create</button>
             </div>

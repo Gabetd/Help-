@@ -119,7 +119,7 @@ if (User){return(
             {rev.user.id === User.id ?
             <div>
               <button onClick={() => deleteRev(rev.id)}> Delete your review</button>
-              <button onClick={() => history.push(`/review/edit/${rev.id}`)}> Edit Review</button>
+              <button onClick={() => history.push(`/review/edit/${rev.id}/business/${businessId}`)}> Edit Review</button>
             </div>
             :
             <></>

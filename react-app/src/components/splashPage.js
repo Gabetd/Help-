@@ -6,6 +6,27 @@ import { getAllBusinessesThunk } from "../store/business";
 import { getAllReviewsThunk } from "../store/review";
 import { resetReview } from "../store/review";
 import './omega.css'
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import 'swiper/swiper-bundle.min.css';
+// import 'swiper/modules/pagination/pagination.min.css';
+// import 'swiper/modules/navigation/navigation.min.css';
+
+
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from "swiper";
+
+// export default function App() {
+//   return (
+//     <>
+
+    {/* </>
+  );
+} */}
+
 
 const Home = () => {
 const history = useHistory()
@@ -60,9 +81,24 @@ const average = (arr) => {
       <></>
       :
     <></>}
-      {/* <img className="cycleimgsplash" src="https://s3-media0.fl.yelpcdn.com/educatorphoto/ccPzYQQGD-GXSUadmL3SPw/o.jpg" /> */}
-      <img className="cycleimgsplash" src="https://s3-media0.fl.yelpcdn.com/educatorphoto/IJElscsPxKRiQJFwUADA-w/o.jpg"/>
-      {/* <img className="cycleimgsplash" src="https://s3-media0.fl.yelpcdn.com/educatorphoto/xL0l_4tg4DdhuHT9S-Kt_w/o.jpg"/> */}
+          <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
+      >
+        <SwiperSlide className="cycleimgsplash"><img src="https://s3-media0.fl.yelpcdn.com/educatorphoto/ccPzYQQGD-GXSUadmL3SPw/o.jpg" /></SwiperSlide>
+        <SwiperSlide className="cycleimgsplash"><img src="https://s3-media0.fl.yelpcdn.com/educatorphoto/IJElscsPxKRiQJFwUADA-w/o.jpg"/></SwiperSlide>
+        <SwiperSlide className="cycleimgsplash"><img src="https://s3-media0.fl.yelpcdn.com/educatorphoto/xL0l_4tg4DdhuHT9S-Kt_w/o.jpg"/></SwiperSlide>
+      </Swiper>
       <h1 className="welcomeSplash" >WELCOME TO HELP!</h1>
       <div className="Businessouterhousing">
       <div className="businesseshousingsplash">

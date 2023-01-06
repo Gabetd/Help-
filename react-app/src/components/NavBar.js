@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import LogoutButton from './auth/LogoutButton';
 import { resetReview } from '../store/review';
 import logo from './logo/logo.png'
+import './omega.css'
 
 
 const NavBar = () => {
@@ -21,7 +22,7 @@ const NavBar = () => {
 
           {User ?
           <div className='navBar'>
-            <div>
+            <div className='logo-housing'>
           <NavLink to='/' exact={true} activeClassName='active'>
             <h2 className='HelpLogo' onClick={()=> restore()}>Help!</h2>
           </NavLink>
@@ -32,11 +33,11 @@ const NavBar = () => {
             </div>
           </div>:
           <div className='navBar'>
-          <div>
+          <div className='logo-housing'>
         <NavLink to='/' exact={true} activeClassName='active'>
           <h2 className='HelpLogo'>Help!</h2>
         </NavLink>
-          </div>
+        </div>
           <div className='secondarynavstuff'>
           <NavLink to='/login' exact={true} activeClassName='active'>
             <button className="oldButton">Login</button>

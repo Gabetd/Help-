@@ -47,15 +47,6 @@ export default function CreateAReview() {
     }
     }
 
-    // const select = (num) => {
-    //   const old = document.getElementsByClassName("selected")
-    //   old.classList.remove("selected")
-    //   const rate = document.getElementById(`${num}`)
-    //   rate.classList.add('selected')
-    //   setStars(num)
-    //   console.log('stars = ', stars)
-    // }
-
 
     return (
         <form className="CreateForm" onSubmit={handleSubmit}>
@@ -69,13 +60,13 @@ export default function CreateAReview() {
             <h2>{BizName}</h2>
             <div className="reviewBox">
             <label>
-              <div className="stars-create-review-page">
-                <span id="1" onClick={() => {setStars(1); console.log(stars)}}>⭐</span>
-                <span id="2" onClick={() => {setStars(2); console.log(stars)}}>⭐</span>
-                <span id="3" onClick={() => {setStars(3); console.log(stars)}}>⭐</span>
-                <span id="4" onClick={() => {setStars(4); console.log(stars)}}>⭐</span>
-                <span id="5" onClick={() => {setStars(5); console.log(stars)}}>⭐</span>
-              </div>
+            <div class="product-review-stars">
+              <input type="radio" id="star5" name="rating" onClick={() => setStars(5)} value="5" class="hidden" /><label className="baseStar" for="star5" title="Great">★</label>
+              <input type="radio" id="star4" name="rating" onClick={() => setStars(4)} value="4" class="hidden" /><label className="baseStar" for="star4" title="Good">★</label>
+              <input type="radio" id="star3" name="rating" onClick={() => setStars(3)} value="3" class="hidden" /><label className="baseStar" for="star3" title="Ok">★</label>
+              <input type="radio" id="star2" name="rating" onClick={() => setStars(2)} value="2" class="hidden" /><label className="baseStar" for="star2" title="Could've Been Better">★</label>
+              <input type="radio" id="star1" name="rating" onClick={() => setStars(1)} value="1" class="hidden" /><label className="baseStar" for="star1" title="Not Good">★</label>
+            </div>
             </label>
             <label className="reviewinput">
                 <textarea

@@ -67,10 +67,11 @@ export const createBusinessThunk = (business) => async (dispatch) => {
     },
     body: JSON.stringify(business)
   });
-
+  console.log('create business res =', response)
   if (response.ok) {
     const Data = await response.json();
     dispatch(CreateNewAction(Data));
+    console.log('data=', Data)
     return Data;
   }
   return

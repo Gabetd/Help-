@@ -19,7 +19,7 @@ export default function CreateABusiness() {
     const [state,setState] = useState('');
     const [zipcode,setZipcode] = useState('');
     const [description,setDescription] = useState('');
-    const [type, setType] = useState('');
+    const [type, setType] = useState("Restaurant");
 
     // console.log('Clicked')
     const [validationErrors, setValidationErrors] = useState([])
