@@ -10,6 +10,7 @@
     "nodemon": "^2.0.20",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-phone-number-input": "^3.2.15",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.1",

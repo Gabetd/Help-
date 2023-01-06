@@ -50,9 +50,9 @@ const SignUpForm = () => {
         <h1 className='HelpLogo'> HELP! </h1>
       </NavLink>
       </div>
-      <div>
+      <div className='error-holder'>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div className='errors' key={ind}>{error}</div>
         ))}
       </div>
       <div className='AuthContainer'>

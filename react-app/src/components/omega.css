@@ -483,5 +483,23 @@ margin: .5em;
     .mySwiper{
       position: relative;
       z-index: -1;
-      
+    }
+
+    .errors{
+      position: relative;
+      left: 50px;
+      top: 50px;
+      display: flex;
+      justify-content: center;
+      font-weight: bolder;
+      font-size: large;
+    }
+
+    .error-holder{
+    height: 200px;
+    }
+
+    .resize{
+      height: 800px;
+      width: 1295px;
     }

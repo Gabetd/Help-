@@ -11,8 +11,7 @@ const LoginForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  const onLogin = async (e) => {
-    e.preventDefault();
+  const onLogin = async () => {
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
@@ -39,9 +38,9 @@ const LoginForm = () => {
         <h1 className='HelpLogo'> HELP! </h1>
       </NavLink>
       </div>
-      <div>
+      <div className='error-holder'>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div className='errors' key={ind}>{error}</div>
         ))}
       </div>
       <div className='AuthContainer'>
@@ -62,14 +61,14 @@ const LoginForm = () => {
         <input
           className='AuthInput'
           // name='password'
-          // type='password'
+          type='password'
           placeholder='Password'
           value={password}
           onChange={updatePassword}
         />
         <span className='newButton' onClick={() => {dispatch(login('demo@aa.io', 'password'))}}
         >Login as Demo User</span>
-        <span className='newButton' type='submit'>Login</span>
+        <span className='newButton' onClick={() => onLogin()}type='submit'>Login</span>
       </div>
       <div className='AuthImg'>
         <img src='https://s3-media0.fl.yelpcdn.com/assets/2/www/img/7922e77f338d/signup/signup_illustration.png'/>

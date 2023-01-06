@@ -95,9 +95,9 @@ const average = (arr) => {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide className="cycleimgsplash"><img src="https://s3-media0.fl.yelpcdn.com/educatorphoto/ccPzYQQGD-GXSUadmL3SPw/o.jpg" /></SwiperSlide>
-        <SwiperSlide className="cycleimgsplash"><img src="https://s3-media0.fl.yelpcdn.com/educatorphoto/IJElscsPxKRiQJFwUADA-w/o.jpg"/></SwiperSlide>
-        <SwiperSlide className="cycleimgsplash"><img src="https://s3-media0.fl.yelpcdn.com/educatorphoto/xL0l_4tg4DdhuHT9S-Kt_w/o.jpg"/></SwiperSlide>
+        <SwiperSlide className="cycleimgsplash"><img className="resize" src="https://s3-media0.fl.yelpcdn.com/educatorphoto/ccPzYQQGD-GXSUadmL3SPw/o.jpg" /></SwiperSlide>
+        <SwiperSlide className="cycleimgsplash"><img className="resize" src="https://s3-media0.fl.yelpcdn.com/educatorphoto/IJElscsPxKRiQJFwUADA-w/o.jpg"/></SwiperSlide>
+        <SwiperSlide className="cycleimgsplash"><img className="resize" src="https://s3-media0.fl.yelpcdn.com/educatorphoto/xL0l_4tg4DdhuHT9S-Kt_w/o.jpg"/></SwiperSlide>
       </Swiper>
       <h1 className="welcomeSplash" >WELCOME TO HELP!</h1>
       <div className="Businessouterhousing">
