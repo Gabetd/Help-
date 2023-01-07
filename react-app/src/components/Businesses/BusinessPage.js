@@ -125,7 +125,7 @@ if (User){return(
             <></>
           }
             </div>
-            <p>{rev.review}</p>
+            <p className="reviewdisplay">{rev.review}</p>
             </div>
           </div>
         ))}

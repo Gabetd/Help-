@@ -26,7 +26,7 @@ export default function CreateAReview() {
     useEffect(() => {
       const Errors = [];
       if (!review) Errors.push('Please add a review before submitting')
-      // if (review.length() > 3000) validationErrors.push('Review must be less than 3000 characters')
+      if (review.length > 3000) validationErrors.push('Review must be less than 3000 characters')
       if (!stars) Errors.push('Please rate this business before submitting')
 
       setValidationErrors(Errors);
@@ -35,11 +35,10 @@ export default function CreateAReview() {
 
 
     const handleSubmit = async () => {
-      if(validationErrors > 0){
-        console.log('stopped')
+      console.log('made it to submit')
+      if(validationErrors.length > 0){
         return
       }
-      console.log('made it to submit')
         const newReview = {
           stars,
           review,
@@ -90,7 +89,7 @@ export default function CreateAReview() {
 
                     </div>
             <div>
-            <span onClick={()=> handleSubmit()} className='newButton' type="submit">Create</span>
+            <span onClick={()=> handleSubmit()} className='newButton' type="submit" disabled={validationErrors.length}>Create</span>
             </div>
           </div>
         </form>

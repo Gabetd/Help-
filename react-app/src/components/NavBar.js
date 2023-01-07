@@ -4,7 +4,6 @@ import { useHistory, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import LogoutButton from './auth/LogoutButton';
 import { resetReview } from '../store/review';
-import logo from './logo/logo.png'
 import './omega.css'
 
 

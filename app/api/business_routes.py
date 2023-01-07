@@ -49,6 +49,7 @@ def new_business():
     db.session.commit()
     images = Business_Image.query.filter(Business_Image.business_id == business.id).all()
     reviews = Review.query.filter(Review.business_id == business.id).all()
+    
     rating = [review.to_dict() for review in reviews]
     return jsonify(business.to_dict_express(images, rating))
   return jsonify(form.errors)

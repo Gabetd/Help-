@@ -108,9 +108,17 @@ const average = (arr) => {
           <img className="businessImgSplashPage" src={biz.preview_img} />
           <div className="spacerforbusiness">
           <NavLink to={`/business/${biz.id}`}>
-          <p>{biz.business_name}</p>
+          <p className="bolder">{biz.business_name}</p>
           </NavLink>
-          <p className="work-for-not-against">{aveRating(average(biz.rating))}{average(biz.rating)}</p>
+          <p>Do you recommend this business?</p>
+          {/* <p className="work-for-not-against">{aveRating(average(biz.rating))}{average(biz.rating)}</p> */}
+          <div class="product-review-stars">
+              <input type="radio" id="star5" name="rating" onClick={() => history.push(`/review/add/${biz.id}`)} value="5" class="hidden" /><label className="baseStar" for="star5" title="Great">★</label>
+              <input type="radio" id="star4" name="rating" onClick={() => history.push(`/review/add/${biz.id}`)} value="4" class="hidden" /><label className="baseStar" for="star4" title="Good">★</label>
+              <input type="radio" id="star3" name="rating" onClick={() => history.push(`/review/add/${biz.id}`)} value="3" class="hidden" /><label className="baseStar" for="star3" title="Ok">★</label>
+              <input type="radio" id="star2" name="rating" onClick={() => history.push(`/review/add/${biz.id}`)} value="2" class="hidden" /><label className="baseStar" for="star2" title="Could've Been Better">★</label>
+              <input type="radio" id="star1" name="rating" onClick={() => history.push(`/review/add/${biz.id}`)} value="1" class="hidden" /><label className="baseStar" for="star1" title="Not Good">★</label>
+            </div>
           </div>
           {/* <p>{biz.street_address} {biz.city} {biz.state}</p>
           <p>{biz.description}</p> */}
@@ -125,7 +133,7 @@ const average = (arr) => {
        ))}
          </div>
          </div>
-         <h2 id="revHeading">Reviews</h2>
+         <h2 id="revHeading">Recent Activity</h2>
          <div className="revOuterHousing">
        <div className="revhousingsplash">
 
@@ -135,16 +143,17 @@ const average = (arr) => {
             <div className="reviewinfo">
             <div className="user-review-info">
             <img className="pfp-review" src="https://media.istockphoto.com/id/1210939712/vector/user-icon-people-icon-isolated-on-white-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=vKDH9j7PPMN-AiUX8vsKlmOonwx7wjqdKiLge7PX1ZQ="/>
-            <p>{rev.user.username}</p>
+            <p className="bold">{rev.user.username}</p>
             </div>
+            <p>Wrote a review</p>
             <NavLink to={`/business/${rev.business.id}`}>
-            <p>{rev.business.business_name}</p>
+            <p className="bold blue" >{rev.business.business_name}</p>
             </NavLink>
             <div className="stars-review">
             {stars(rev.stars)}
             {/* <p>{rev.stars}</p> */}
             </div>
-            <p>{rev.review}</p>
+            <p className="reviewdisplay">{rev.review}</p>
             </div>
           </div>
         ))}

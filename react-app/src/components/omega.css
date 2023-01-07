@@ -1,9 +1,12 @@
-
+*{
+  font-family: sans-serif;
+}
 .businesseshousingsplash{
   display: grid;
   grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr);
   /* gap: 2px; */
   width: 100%;
+  border-bottom: 1px solid rgba(10, 10, 10, .3);
 }
 .Businessouterhousing{
   display: flex;
@@ -143,9 +146,11 @@ a, NavLink{
 }
 
 #revHeading{
-  margin-left: 50%;
+  display: flex;
+  justify-content: center;
+  /* margin-left: 50%;
   margin-right: 50%;
-  margin-top: 2%;
+  margin-top: 2%; */
   font-weight: 900;
   font-size:xx-large ;
 }
@@ -174,13 +179,19 @@ a, NavLink{
 .AuthInfo{
   display: flex;
   flex-direction: column;
-  margin-top: 10%;
+  align-items: flex-start;
+
+  /* margin-top: 10%; */
   margin-right: 10%;
+  /* margin-bottom: 10%;  */
 }
 
 .AuthImg{
-  margin-top: 10%;
+  display: flex;
+  align-items: flex-start;
+  /* margin-top: 10%;*/
   margin-right: 10%;
+ /*  margin-bottom: 10%; */
 }
 
 .AuthInput{
@@ -233,14 +244,16 @@ margin: .5em;
 }
 
 .reviewinput{
-  background-color: aqua;
+  /* background-color: aqua; */
   border: none;
+  /* resize: none; */
   height: 370px;
   width: 625px;
 }
 .reviewInputContents{
   font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
   /* display: flex; */
+  resize: none;
   font-size: 16px;
   line-height: 22px;
   outline: none;
@@ -254,13 +267,18 @@ margin: .5em;
   word-break: break-all;
   color: rgba(45,46,47,1);
 }
+.reviewdisplay{
+  flex-wrap: wrap;
+  word-break: break-all;
+  max-height: 100px;
+}
 
 .oldButton{
   background-color: rgba(150, 150, 150, .8);
   justify-content: center;
   padding: .5em;
   border: 0px solid grey;
-  width: 350px;
+  width: 190px;
   height: 41px;
   border-radius: 3px;
   /* margin: .5em; */
@@ -272,7 +290,7 @@ margin: .5em;
 }
 .oldButton:hover{
   background-color: rgba(150, 150, 150, .9);
-  width: 350px;
+
 }
 
 .newButtontwo{
@@ -378,7 +396,7 @@ margin: .5em;
         position: absolute;
         right: 0;
         opacity: 0;
-        transition: opacity .3s ease-in-out, color .3s ease-in-out;
+        /* transition: opacity .3s ease-in-out, color .3s ease-in-out; */
         backface-visibility:hidden;
         -webkit-backface-visibility:hidden;
 
@@ -503,4 +521,19 @@ margin: .5em;
       height: 800px;
       width: 1295px;
     }
-    
+
+    .bolder{
+      /* size: 10px; */
+
+      font-size: 30px;
+      font-weight: bold;
+      color: black;
+    }
+    .bold{
+      font-size: 15px;
+      font-weight: bold;
+      color: black;
+    }
+    .blue{
+      color:blue
+    }
