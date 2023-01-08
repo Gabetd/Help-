@@ -729,7 +729,7 @@ footer{
   min-width: 800px;
   }
   .revhousingsplash{
-    background-color: #f1c40f;
+    /* background-color: #f1c40f; */
     display: flex;
     justify-content: center;
     flex-direction: column;
