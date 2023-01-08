@@ -15,7 +15,8 @@ def get_all_business():
     images = Business_Image.query.filter(Business_Image.business_id == business.id).all()
     reviews = Review.query.filter(Review.business_id == business.id).all()
     rating = [review.to_dict() for review in reviews]
-    business_list.append(business.to_dict_express(images, rating))
+    user = User.query.get(business.owner_id)
+    business_list.append(business.to_dict_express(user.to_dict(), images, rating))
   return jsonify(business_list)
 
 @business_routes.route('/<int:business_id>')
@@ -24,7 +25,8 @@ def business_by_id(business_id):
   images = Business_Image.query.filter(Business_Image.business_id == business.id).all()
   reviews = Review.query.filter(Review.business_id == business.id).all()
   rating = [review.to_dict() for review in reviews]
-  return jsonify(business.to_dict_express(images, rating))
+  user = User.query.get(business.owner_id)
+  return jsonify(business.to_dict_express(user.to_dict(), images, rating))
 
 @business_routes.route('/new', methods=['POST'])
 @login_required
@@ -49,9 +51,10 @@ def new_business():
     db.session.commit()
     images = Business_Image.query.filter(Business_Image.business_id == business.id).all()
     reviews = Review.query.filter(Review.business_id == business.id).all()
-    
+
     rating = [review.to_dict() for review in reviews]
-    return jsonify(business.to_dict_express(images, rating))
+    user = User.query.get(business.owner_id)
+    return jsonify(business.to_dict_express(user.to_dict(), images, rating))
   return jsonify(form.errors)
 
 
@@ -78,7 +81,8 @@ def edit_business(business_id):
     images = Business_Image.query.filter(Business_Image.business_id == business.id).all()
     reviews = Review.query.filter(Review.business_id == business.id).all()
     rating = [review.to_dict() for review in reviews]
-    return jsonify(business.to_dict_express(images, rating))
+    user = User.query.get(business.owner_id)
+    return jsonify(business.to_dict_express(user.to_dict(), images, rating))
   if not business:
     return {'errors': ['That business does not exist']}, 401
   else:

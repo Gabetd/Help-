@@ -16,7 +16,7 @@ export default function EditAReview() {
     const history = useHistory()
     const User = useSelector(state => state.session.user)
     const ReviewOne = useSelector(state => state.reviews.business[reviewId])
-    const Review = useSelector(state => state.reviews.allReviews[reviewId])
+    const Review = useSelector(state => state.reviews.allReviews)
     const [review, setReview] = useState('')
     const [stars,setStars] = useState('');
     const [validationErrors, setValidationErrors] = useState([])
@@ -28,19 +28,13 @@ export default function EditAReview() {
     useEffect(() => {
       const Errors = [];
       if (!review) Errors.push('Please add a review before submitting')
-      if (review.length > 3000) validationErrors.push('Review must be less than 3000 characters')
+      if (review.length >= 3000) Errors.push('Review must be less than 3000 characters')
       if (!stars) Errors.push('Please rate this business before submitting')
-
+      console.log(review.length)
       setValidationErrors(Errors);
     }, [review, stars]);
 
-    useEffect(() => {
-      dispatch(getAllReviewsThunk())
-      dispatch(getOneReviewThunk(reviewId))
-      if(ReviewOne){
-        setReview(ReviewOne.review)
-      }
-    }, [dispatch])
+
 
     // console.log(ReviewOne?.review)
 
@@ -64,8 +58,12 @@ export default function EditAReview() {
       history.push(`/business/${businessId}`)
     }
     }
+    useEffect(() => {
+      dispatch(getAllReviewsThunk())
+      dispatch(getOneReviewThunk(reviewId))
+    }, [dispatch])
 
-
+    if (!ReviewOne){return <h1>Loading</h1>}
     if(!User){
       history.push('/')
   }
@@ -91,8 +89,9 @@ export default function EditAReview() {
             <label className="reviewinput">
                 <textarea
                     className="reviewInputContents"
-                    placeholder="Review"
+                    placeholder={ReviewOne.review}
                     type="text"
+                    defaultValue={ReviewOne.review}
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
                     required
