@@ -5,8 +5,8 @@
   display: grid;
   grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr);
   /* gap: 2px; */
-  width: 100%;
-  border-bottom: 1px solid rgba(10, 10, 10, .3);
+  width: 80%;
+  border-bottom: 2px solid rgba(10, 10, 10, .3);
 }
 .Businessouterhousing{
   display: flex;
@@ -17,7 +17,7 @@
   display: grid;
   grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
   gap: 32px;
-  width: 100%;
+  width: 80%;
 }
 .cycleimgsplash{
   position: absolute;
@@ -78,12 +78,12 @@
 }
 
 .businessImgSplashPage{
-  max-width: 200px;
-  max-height: 200px;
-  height: 200px;
-  width: 200px;
-  min-width: 200px;
-  min-height: 200px;
+  max-width: 250px;;
+  max-height: 250px;;
+  height: 250px;
+  width: 250px;
+  min-width: 250px;;
+  min-height: 250px;;
   border-radius: 5px;
   margin-right: 2em;
 }
@@ -91,13 +91,13 @@
 .LittleBusiness{
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 95%;
   min-width: 419px;
-  border: 1px solid black;
+  border: 2px solid rgba(150, 150, 150, .4);
   /* padding: 10px; */
   border-radius: 5px;
   margin: 5%;
-  height: 200px;
+  height: 250px;
 }
 
 .spacerforbusiness{
@@ -322,6 +322,7 @@ margin: .5em;
     display: flex;
     padding: .5em;
     border: .3px solid grey;
+    /* height: 1em; */
     width: 94%;
     border-radius: 3px;
     margin: .5em;
@@ -687,8 +688,7 @@ footer{
   width: 200px;
   /* height: 0px; */
 }
-/* .file-drop{ */
-  /* display: flex;
-  flex-direction: column; */
-  /* background-color: pink; */
-/* } */
+.revOuterHousing{
+  display: flex;
+  justify-content: center;
+}

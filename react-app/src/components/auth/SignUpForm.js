@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -13,13 +13,25 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  useEffect(()=> {
+    const valErrors = []
+    if (!email.includes('@')) valErrors.push('Please enter a valid email')
+    if(username.length > 30 || username.length < 3) valErrors.push('username must be between 3 and 30 characters')
+
+    setErrors(valErrors)
+  }, [email, username])
+
   const onSignUp = async (e) => {
-    // e.preventDefault();
+
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
       }
+    }else{
+      const valErrors = []
+      valErrors.push('Passwords do not match')
+      setErrors(valErrors)
     }
   };
 
