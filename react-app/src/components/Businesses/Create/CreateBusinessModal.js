@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom'
 import { createBusinessThunk } from "../../../store/business";
 import { getSingleBusinessThunk } from "../../../store/business";
-import PhoneInput from 'react-phone-number-input'
 import '../../omega.css'
+
 
 
 export default function CreateABusiness() {
@@ -14,7 +14,7 @@ export default function CreateABusiness() {
     // const [ownerId, setOwnerId] = useState('');
     const [businessName,setBusinessName] = useState('');
     const [Img, setImg] = useState('');
-    const [phone,setPhone] = useState('');
+    const [phone, setPhone] = useState('');
     const [streetAddress,setStreetAddress] = useState('');
     const [city,setCity] = useState('');
     const [state,setState] = useState('');
@@ -27,9 +27,17 @@ export default function CreateABusiness() {
 
     /* Validation errors for form */
     useEffect(() => {
-        const validationErrors = [];
-        setValidationErrors(validationErrors);
-    }, []);
+        const Errors = [];
+        if(phone.length !== 10) Errors.push('Please enter a valid phone number')
+        if(zipcode.length !== 5) Errors.push('Please enter a valid zipcode')
+        if(businessName.length > 100 || businessName.length < 3) Errors.push('Business Name must be between 3 and 100 characters')
+        if(Img.length > 2000 || Img.length < 3) Errors.push('Please choose a different image')
+        if(streetAddress.length > 100 || streetAddress.length < 3) Errors.push('Street Address must be between 3 and 100 characters')
+        if(city.length > 100 || city.length < 3) Errors.push('City must be between 3 and 100 characters')
+        if(state.length > 100 || state.length < 2) Errors.push('Please enter a valid state')
+        if(description.length > 100 || description.length < 3) Errors.push('Description must be between 3 and 3000 characters')
+        setValidationErrors(Errors);
+    }, [phone, zipcode,description, state, ]);
 
     const handleSubmit = async (e) => {
       console.log('made it to submit')
@@ -63,9 +71,9 @@ export default function CreateABusiness() {
 
     return (
         <form className="CreateForm" onSubmit={handleSubmit}>
-            <div >
+            <div className="side">
         {validationErrors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div className="bold" key={ind}>{error}</div>
         ))}
       </div>
             <h2>Buisness Information</h2>
@@ -94,7 +102,7 @@ export default function CreateABusiness() {
                 <input
                     className="input"
                     placeholder="Phone Number"
-                    type="text"
+                    type="number"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     required
@@ -124,7 +132,7 @@ export default function CreateABusiness() {
                 <input
                     className="input"
                     placeholder="Zipcode"
-                    type="text"
+                    type="number"
                     value={zipcode}
                     onChange={(e) => setZipcode(e.target.value)}
                     required

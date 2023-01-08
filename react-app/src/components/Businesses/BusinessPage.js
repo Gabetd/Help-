@@ -74,8 +74,9 @@ const deleteRev = (id) => {
   let users = Object.values(reviews).map(rev => {
     return rev.user.id
   })
-  console.log('users', users)
+  // console.log('users', users)
   let reviewed = (id) => {
+    console.log("users = ", users, 'user id =', User.id)
     if(users.includes(User.id)){
       return (<></>)
     }else{
@@ -102,10 +103,10 @@ if (User){return(
     <h3>{owner.username} • {business.business_type}</h3>
     </div>
     <div className="small">
-    {User.id === business.owner_id?
+    {User.id === business.owner.id?
     <div>
     {/* <button onClick={() => history.push(`/business/${businessId}/edit`)}>Edit your business</button> */}
-    <button onClick={() => Remove()}>Remove your business from Help</button>
+    <span className='newButton' onClick={() => Remove()}>Remove your business from Help</span>
     </div>
     :
       reviewed(business.id)
