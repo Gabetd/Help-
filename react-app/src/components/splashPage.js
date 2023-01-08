@@ -59,7 +59,6 @@ const reviewed = (biz) => {
   const ratings= Object.values(biz.rating).map(el => {
     return [el.user_id, el.id]
   })
-  console.log(biz, ratings, user.id)
   for(let i = 0; i < ratings.length; i++){
     if(ratings[i][0]=== user.id ){
       history.push(`/review/edit/${ratings[i][1]}/business/${biz.id}`)
@@ -80,7 +79,6 @@ const Logged = (biz)=> {
 }
 
 
-  console.log('this is ',businesses)
   return(
     <div>
       {user ?

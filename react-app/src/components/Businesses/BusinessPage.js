@@ -17,7 +17,6 @@ export default function SingleBusiness(){
   const reviews = useSelector(state => state.reviews.business)
   // const [hasClicked, setHasClicked] = useState(false)
   const {businessId} = useParams()
-  console.log('Owner =', owner)
   const ratings = business.rating || []
   useEffect(() => {
     dispatch(getSingleBusinessThunk(businessId))
@@ -32,7 +31,6 @@ const Remove = () => {
 }
 
 const average = (arr) => {
-  // console.log(arr)
   let len = arr.length
   if(len === 0){return ''}
   let sum = 0
@@ -50,7 +48,7 @@ const average = (arr) => {
 }
 
 const aveRating = (num) => {
-  console.log('num',num)
+
   if (num > 4.5 ){
   return (<div>⭐⭐⭐⭐⭐</div>)}else if (num >= 4){
   // return (<div>⭐⭐⭐⭐</div>)}else if (num > 3.5){
@@ -70,13 +68,13 @@ const deleteRev = (id) => {
   // history.push(`/business/${businessId}`)
 }
 
-  console.log('reviews', reviews)
+
   let users = Object.values(reviews).map(rev => {
     return rev.user.id
   })
-  // console.log('users', users)
+
   let reviewed = (id) => {
-    console.log("users = ", users, 'user id =', User.id)
+
     if(users.includes(User.id)){
       return (<></>)
     }else{

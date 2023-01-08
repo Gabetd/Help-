@@ -20,26 +20,19 @@ export default function EditAReview() {
     const [review, setReview] = useState('')
     const [stars,setStars] = useState('');
     const [validationErrors, setValidationErrors] = useState([])
-    // const rev = allReviews.find(el => el.id === reviewId)
-    // const rev = {business_id:2}
-    // console.log('review', allReviews)
-    console.log('review', Review)
-    /* Validation errors for form */
+
     useEffect(() => {
       const Errors = [];
       if (!review) Errors.push('Please add a review before submitting')
       if (review.length >= 3000) Errors.push('Review must be less than 3000 characters')
       if (!stars) Errors.push('Please rate this business before submitting')
-      console.log(review.length)
       setValidationErrors(Errors);
     }, [review, stars]);
 
 
 
-    // console.log(ReviewOne?.review)
 
     const handleSubmit = async () => {
-      console.log('made it to submit')
       if(validationErrors.length > 0){
         return
       }
@@ -49,9 +42,7 @@ export default function EditAReview() {
           business_id: businessId,
           user_id: User.id
         }
-        console.log('payload = ', newReview)
         const data = await dispatch(editReviewThunk(newReview, reviewId))
-        console.log(data)
     if(data){
       dispatch(getAllReviewsByBusinessThunk(businessId))
       dispatch(getSingleBusinessThunk(businessId))

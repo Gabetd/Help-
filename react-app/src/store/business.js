@@ -53,10 +53,8 @@ export const createPreviewImageThunk = (formData) => async (dispatch) => {
     method: "POST",
     body: formData,
   });
-console.log('res = ', res)
 if(res.ok){
   const Data = res.json();
-  console.log('data=', Data)
   return Data
 }
 return
@@ -80,11 +78,9 @@ export const createBusinessThunk = (business) => async (dispatch) => {
     },
     body: JSON.stringify(business)
   });
-  console.log('create business res =', response)
   if (response.ok) {
     const Data = await response.json();
     dispatch(CreateNewAction(Data));
-    console.log('data=', Data)
     return Data;
   }
   return
@@ -111,7 +107,6 @@ export const editBusinessThunk = (business, id) => async (dispatch) => {
     //   business_type
     // })
   });
-  console.log('business = ', business, 'res = ', response)
 
   if (response.ok) {
     const Data = await response.json();

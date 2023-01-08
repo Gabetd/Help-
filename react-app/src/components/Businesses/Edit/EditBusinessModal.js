@@ -21,8 +21,6 @@ export default function EditABusiness() {
     const [zipcode,setZipcode] = useState(business.zipcode || '');
     const [description,setDescription] = useState(business.description || '');
     const [type, setType] = useState(business.type || '');
-
-    // console.log('Clicked')
     const [validationErrors, setValidationErrors] = useState([])
 
     /* Validation errors for form */
@@ -32,7 +30,6 @@ export default function EditABusiness() {
     }, []);
 
     const handleSubmit = async (e) => {
-      console.log('made it to submit')
         e.preventDefault();
         const businesses = {
           owner_id: business.owner_id,
@@ -45,7 +42,6 @@ export default function EditABusiness() {
           description: business.description,
           business_type: business.business_type
         }
-        console.log('payload = ', businesses)
         await dispatch(editBusinessThunk(businesses, businessId))
 
       // setShowModal(false)

@@ -47,11 +47,9 @@ const loadOne = (reviewId) => ({
 // THUNK action creators by business ID
 export const getAllReviewsByBusinessThunk = (businessId) => async dispatch => {
     const response = await fetch(`/api/review/business/${businessId}`)
-    // console.log('reviews', response)
     if (response.ok) {
         const Data = await response.json()
         dispatch(load(Data, businessId))
-        // console.log('data', Data)
         return Data
     }
     return
@@ -59,10 +57,8 @@ export const getAllReviewsByBusinessThunk = (businessId) => async dispatch => {
 
 export const getAllReviewsThunk = () => async (dispatch) => {
     const response = await fetch('/api/review/all')
-    // console.log('all reviews = ',response)
     if (response.ok) {
         const Data = await response.json()
-        console.log(Data)
         await dispatch(loadAllReviews(Data))
         return Data
     }
@@ -77,11 +73,9 @@ export const createReviewThunk = (review, businessId) => async dispatch => {
         },
         body: JSON.stringify(review)
     })
-    console.log(response)
     if (response.ok) {
         const Data = await response.json()
         dispatch(create(Data, businessId))
-        // console.log('data =', Data)
         return Data
     }
     return
@@ -95,12 +89,9 @@ export const editReviewThunk = (review, reviewId) => async dispatch => {
         },
         body: JSON.stringify(review)
     })
-    console.log(review)
-    console.log('inside edit review thunk, res =', response)
     if (response.ok) {
         const Data = await response.json()
         dispatch(edit(Data))
-        console.log('edit review data =', Data)
         return Data
     }
     return

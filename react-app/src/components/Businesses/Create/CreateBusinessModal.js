@@ -23,7 +23,7 @@ export default function CreateABusiness() {
     const [description,setDescription] = useState('');
     const [type, setType] = useState("Restaurant");
 
-    // console.log('Clicked')
+
     const [validationErrors, setValidationErrors] = useState([])
 
     /* Validation errors for form */
@@ -43,7 +43,6 @@ export default function CreateABusiness() {
 
 
     const handleSubmit = async () => {
-            console.log('made it to submit')
             const business = {
                 owner_id: User.id,
                 preview_img: image,
@@ -56,9 +55,8 @@ export default function CreateABusiness() {
                 description,
                 business_type: type
             }
-            console.log('payload = ', business)
+
             const data = await dispatch(createBusinessThunk(business))
-        console.log(data)
         if(data){
             dispatch(getSingleBusinessThunk(data.id))
             history.push(`/business/${data.id}`)
@@ -72,9 +70,7 @@ export default function CreateABusiness() {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("image", file);
-    console.log(formData)
     const res = await dispatch(createPreviewImageThunk(formData))
-    console.log(res.url)
     setImage(res.url)
     }
 

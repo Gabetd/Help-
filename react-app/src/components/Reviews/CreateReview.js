@@ -16,7 +16,6 @@ export default function CreateAReview() {
     const [review, setReview] = useState('');
     const [stars,setStars] = useState('');
     const {businessId} = useParams()
-    // console.log('Clicked')
     const [validationErrors, setValidationErrors] = useState([])
 
     useEffect(()=> {
@@ -35,7 +34,6 @@ export default function CreateAReview() {
 
 
     const handleSubmit = async () => {
-      console.log('made it to submit')
       if(validationErrors.length > 0){
         return
       }
@@ -45,9 +43,7 @@ export default function CreateAReview() {
           business_id: businessId,
           user_id: User.id
         }
-        console.log('payload = ', newReview)
         const data = await dispatch(createReviewThunk(newReview, businessId))
-        console.log(data)
     if(data){
       dispatch(resetReview())
       dispatch(getAllReviewsByBusinessThunk(businessId))

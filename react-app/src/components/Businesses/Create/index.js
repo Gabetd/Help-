@@ -18,7 +18,6 @@ function AddBusinessModal(user) {
 
   const thing = () =>{
     setShowModal(true)
-    console.log(showModal)
   }
   return (
     <>
