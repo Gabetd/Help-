@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from app.models import User, db, Review, Business, Business_Image
 from app.forms.business_form import BusinessForm
-from app.aws import (upload_file_to_s3, allowed_file, get_unique_filename)
+# from app.aws import (upload_file_to_s3, allowed_file, get_unique_filename)
 
 business_routes = Blueprint('business', __name__, url_prefix='/api/business')
 

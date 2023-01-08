@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom'
 import { createBusinessThunk } from "../../../store/business";
 import { getSingleBusinessThunk } from "../../../store/business";
+import { createPreviewImageThunk } from "../../../store/business";
 import '../../omega.css'
 
 
@@ -13,7 +14,7 @@ export default function CreateABusiness() {
     const User = useSelector(state => state.session.user)
     // const [ownerId, setOwnerId] = useState('');
     const [businessName,setBusinessName] = useState('');
-    const [Img, setImg] = useState('');
+    const [image, setImage] = useState('');
     const [phone, setPhone] = useState('');
     const [streetAddress,setStreetAddress] = useState('');
     const [city,setCity] = useState('');
@@ -31,7 +32,7 @@ export default function CreateABusiness() {
         if(phone.length !== 10) Errors.push('Please enter a valid phone number')
         if(zipcode.length !== 5) Errors.push('Please enter a valid zipcode')
         if(businessName.length > 100 || businessName.length < 3) Errors.push('Business Name must be between 3 and 100 characters')
-        if(Img.length > 2000 || Img.length < 3) Errors.push('Please choose a different image')
+        // if(image.length > 2000 || image.length < 3) Errors.push('Please choose a different image')
         if(streetAddress.length > 100 || streetAddress.length < 3) Errors.push('Street Address must be between 3 and 100 characters')
         if(city.length > 100 || city.length < 3) Errors.push('City must be between 3 and 100 characters')
         if(state.length > 100 || state.length < 2) Errors.push('Please enter a valid state')
@@ -39,34 +40,44 @@ export default function CreateABusiness() {
         setValidationErrors(Errors);
     }, [phone, zipcode,description, state, ]);
 
-    const handleSubmit = async (e) => {
-      console.log('made it to submit')
-        e.preventDefault();
-        const business = {
-          owner_id: User.id,
-          preview_img: Img,
-          business_name: businessName,
-          phone,
-          street_address: streetAddress,
-          city,
-          zipcode,
-          state,
-          description,
-          business_type: type
-        }
-        console.log('payload = ', business)
-        const data = await dispatch(createBusinessThunk(business))
-        console.log(data)
-    if(data){
-      dispatch(getSingleBusinessThunk(data.id))
-      history.push(`/business/${data.id}`)
-      // setShowModal(false)
-    }
 
+
+    const handleSubmit = async (e) => {
+
+            console.log('made it to submit')
+            e.preventDefault();
+            const business = {
+                owner_id: User.id,
+                preview_img: image,
+                business_name: businessName,
+                phone,
+                street_address: streetAddress,
+                city,
+                zipcode,
+                state,
+                description,
+                business_type: type
+            }
+            console.log('payload = ', business)
+            const data = await dispatch(createBusinessThunk(business))
+        console.log(data)
+        if(data){
+            dispatch(getSingleBusinessThunk(data.id))
+            history.push(`/business/${data.id}`)
+        }
     }
 
     if(!User){
         history.push('/')
+    }
+    const imageUpload = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    console.log(formData)
+    const res = await dispatch(createPreviewImageThunk(formData))
+    console.log(res.url)
+    setImage(res.url)
     }
 
     return (
@@ -89,15 +100,29 @@ export default function CreateABusiness() {
                 />
             </label>
             <label>
-            <input
+            {/* <input
                     className="input"
                     placeholder="Preview Image"
                     type="text"
                     value={Img}
                     onChange={(e) => setImg(e.target.value)}
                     required
-                />
+                /> */}
+        <center>
+        <h5 className="bold">Uplad Your Business Image</h5>
+        </center>
+        <div className="aws-input">
+          <input
+            type="file"
+            className="file-drop"
+            accept="file/*"
+            encType="multipart/form-data"
+            onChange={imageUpload}
+            required
+          />
+        </div>
             </label>
+
             <label>
                 <input
                     className="input"

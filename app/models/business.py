@@ -26,8 +26,7 @@ class Business(db.Model):
     owner = db.relationship("User", back_populates="businesses")
 
 
-    def to_dict_express(self,user, images, rating):
-    # , images):
+    def to_dict_express(self, user, images, rating):
         return {
             "id":self.id,
             "preview_img": self.preview_img,

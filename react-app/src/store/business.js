@@ -48,6 +48,19 @@ export const getAllBusinessesThunk = () => async (dispatch) => {
   return;
 };
 
+export const createPreviewImageThunk = (formData) => async (dispatch) => {
+  const res = await fetch('/api/image', {
+    method: "POST",
+    body: formData,
+  });
+console.log('res = ', res)
+if(res.ok){
+  const Data = res.json();
+  console.log('data=', Data)
+  return Data
+}
+return
+}
 
 export const getSingleBusinessThunk = (businessId) => async (dispatch) => {
   const response = await fetch(`/api/business/${businessId}`);

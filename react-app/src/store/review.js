@@ -77,7 +77,7 @@ export const createReviewThunk = (review, businessId) => async dispatch => {
         },
         body: JSON.stringify(review)
     })
-
+    console.log(response)
     if (response.ok) {
         const Data = await response.json()
         dispatch(create(Data, businessId))
