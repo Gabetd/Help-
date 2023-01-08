@@ -101,6 +101,7 @@ if (User){return(
     <img className="pfp-review" src="https://media.istockphoto.com/id/1210939712/vector/user-icon-people-icon-isolated-on-white-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=vKDH9j7PPMN-AiUX8vsKlmOonwx7wjqdKiLge7PX1ZQ="/>
     <h3>{owner.username} • {business.business_type}</h3>
     </div>
+    <div className="small">
     {User.id === business.owner_id?
     <div>
     {/* <button onClick={() => history.push(`/business/${businessId}/edit`)}>Edit your business</button> */}
@@ -109,10 +110,13 @@ if (User){return(
     :
       reviewed(business.id)
   }
+    </div>
+    <h2 className="border-top"> About the Business </h2>
+    <p>{business.description}</p>
       </div>
-         <div className="revhousingsplash">
+         <div className="">
          {Object.values(reviews).map(rev => (
-          <div key={rev.id} className='container-basic'>
+          <div key={rev.id} className=''>
             {/* <h2>User Info Here</h2> */}
             <div className="reviewinfo">
             <div className="user-review-info">
@@ -122,9 +126,9 @@ if (User){return(
             <div className="stars-review">
             {stars(rev.stars)}
             {rev.user.id === User.id ?
-            <div>
-              <button onClick={() => deleteRev(rev.id)}> Delete your review</button>
-              <button onClick={() => history.push(`/review/edit/${rev.id}/business/${businessId}`)}> Edit Review</button>
+            <div className="edit-delete">
+              <span className='newButton' onClick={() => deleteRev(rev.id)}> Delete your review</span>
+              <span className='wnewButton' onClick={() => history.push(`/review/edit/${rev.id}/business/${businessId}`)}> Edit Review</span>
             </div>
             :
             <></>
@@ -134,31 +138,41 @@ if (User){return(
             </div>
           </div>
         ))}
+       </div>
         <div className="Secondary info">
-        <p>{business.description}</p>
+
         </div>
         <div className="infoBox">
           <p className="border">{business.phone} <img className='smallpic' src='https://img.freepik.com/premium-vector/phone-call-icon-isolated-white-background-telephone-symbol-vector-illustration_548264-469.jpg?w=740'/></p>
           <p className="padding">{business.street_address} {business.city} {business.state}</p>
         </div>
-       </div>
     </div>
   </div>
 )}else{
 
 
 return(
-  <div>
-    <p>{business.id}</p>
-    <p className="work-for-not-against">{average(ratings)}</p>
-    <p>{business.business_name}</p>
-    <p>{business.street_address} {business.city} {business.state}</p>
+  <div className="businessPageHousingOuter">
+    <div className="businessPageHousinginner">
+
+
+    <h1 className="extra">{business.business_name}</h1>
+    <p className="work-for-not-against">{average(ratings)} {ratings.length} reviews</p>
+    <div>
+    <div className="user-review-info bold">
+    <img className="pfp-review" src="https://media.istockphoto.com/id/1210939712/vector/user-icon-people-icon-isolated-on-white-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=vKDH9j7PPMN-AiUX8vsKlmOonwx7wjqdKiLge7PX1ZQ="/>
+    <h3>{owner.username} • {business.business_type}</h3>
+    </div>
+    <div className="small">
+    <span className='newButton' onClick={() => history.push(`/login`)}>Login to leave review</span>
+    </div>
+    <h2 className="border-top"> About the Business </h2>
     <p>{business.description}</p>
-
-
-         <div className="revhousingsplash">
+      </div>
+         <div className="">
          {Object.values(reviews).map(rev => (
-          <div key={rev.id} className='container-basic'>
+          <div key={rev.id} className=''>
+            {/* <h2>User Info Here</h2> */}
             <div className="reviewinfo">
             <div className="user-review-info">
             <img className="pfp-review" src="https://media.istockphoto.com/id/1210939712/vector/user-icon-people-icon-isolated-on-white-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=vKDH9j7PPMN-AiUX8vsKlmOonwx7wjqdKiLge7PX1ZQ="/>
@@ -167,11 +181,19 @@ return(
             <div className="stars-review">
             {stars(rev.stars)}
             </div>
-            <p>{rev.review}</p>
+            <p className="reviewdisplay">{rev.review}</p>
             </div>
           </div>
         ))}
        </div>
+        <div className="Secondary info">
+
+        </div>
+        <div className="infoBox">
+          <p className="border">{business.phone} <img className='smallpic' src='https://img.freepik.com/premium-vector/phone-call-icon-isolated-white-background-telephone-symbol-vector-illustration_548264-469.jpg?w=740'/></p>
+          <p className="padding">{business.street_address} {business.city} {business.state}</p>
+        </div>
+    </div>
   </div>
 )
 }

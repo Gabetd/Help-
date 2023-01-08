@@ -61,6 +61,7 @@
 .stars-review{
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .work-for-not-against{
@@ -346,7 +347,27 @@ margin: .5em;
     }
 
 
+    .wnewButton{
+      display: flex;
+      padding: .5em;
+      border: .3px solid grey;
+      width: 94%;
+      border-radius: 3px;
+      margin: .5em;
+      background-color:rgba(150, 150, 150, .4);
+      font-size: large;
+      font-weight: bolder;
+      color: white;
+      justify-content: center;
+      }
 
+      .wnewButton:hover{
+      /* padding: .5em; */
+      /* border: .3px solid grey;
+      border-radius: 3px;
+      margin: .5em; */
+      background-color: rgba(150, 150, 150, .7);
+      }
 
 
 
@@ -633,4 +654,17 @@ footer{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.border-top{
+  border-top: 1px solid rgba(150, 150, 150, .4);
+}
+
+.edit-delete{
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+}
+.small{
+  width: 20%;
 }
