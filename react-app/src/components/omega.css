@@ -680,3 +680,15 @@ footer{
   width: 350px;
   border-radius: 10px;
 }
+.aws-input{
+  display: flex;
+  flex-direction: column;
+  /* background-color: aquamarine; */
+  width: 200px;
+  /* height: 0px; */
+}
+/* .file-drop{ */
+  /* display: flex;
+  flex-direction: column; */
+  /* background-color: pink; */
+/* } */

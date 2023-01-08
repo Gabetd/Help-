@@ -42,10 +42,8 @@ export default function CreateABusiness() {
 
 
 
-    const handleSubmit = async (e) => {
-
+    const handleSubmit = async () => {
             console.log('made it to submit')
-            e.preventDefault();
             const business = {
                 owner_id: User.id,
                 preview_img: image,
@@ -99,30 +97,6 @@ export default function CreateABusiness() {
                     required
                 />
             </label>
-            <label>
-            {/* <input
-                    className="input"
-                    placeholder="Preview Image"
-                    type="text"
-                    value={Img}
-                    onChange={(e) => setImg(e.target.value)}
-                    required
-                /> */}
-        <center>
-        <h5 className="bold">Uplad Your Business Image</h5>
-        </center>
-        <div className="aws-input">
-          <input
-            type="file"
-            className="file-drop"
-            accept="file/*"
-            encType="multipart/form-data"
-            onChange={imageUpload}
-            required
-          />
-        </div>
-            </label>
-
             <label>
                 <input
                     className="input"
@@ -194,8 +168,23 @@ export default function CreateABusiness() {
               <option value="Self Care">Self Care</option>
             </select>
             </label>
+            <label>
+        <center>
+        <h5 className="bold">Uplad Your Business Image</h5>
+        </center>
+        <div className="aws-input">
+          <input
+            type="file"
+            className="file-drop"
+            accept="file/*"
+            encType="multipart/form-data"
+            onChange={imageUpload}
+            required
+          />
+        </div>
+            </label>
             <div>
-            <button type="submit" disabled={validationErrors.length}>Create</button>
+            <span className="newButton" onClick={() => handleSubmit()} type="submit" disabled={validationErrors.length}>Create</span>
             </div>
         </form>
 
