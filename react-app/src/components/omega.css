@@ -109,6 +109,8 @@ html{
 } */
 
 .CreateForm{
+
+  /* margin-top: 60px; */
   display: flex;
   flex-direction: column;
   flex-direction: column;
@@ -691,4 +693,46 @@ footer{
 .revOuterHousing{
   display: flex;
   justify-content: center;
+}
+.CreateFormbiz{
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: black; */
+  height: 700px;
+  width: 75%;
+}
+.container-basic-rev{
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid black;
+  max-height: 500px;
+  margin: 5%;
+}
+@media (max-width: 1550px) {
+  .Businessouterhousing{
+    /* background-color: #f1c40f; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .businesseshousingsplash{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 800px;
+  }
+  .resize{
+  min-width: 800px;
+  }
+  .revhousingsplash{
+    background-color: #f1c40f;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 800px;
+  }
 }

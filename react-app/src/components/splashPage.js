@@ -143,7 +143,7 @@ const Logged = (biz)=> {
        <div className="revhousingsplash">
 
         {Object.values(reviews).map(rev => (
-          <div key={rev.id} className='container-basic'>
+          <div key={rev.id} className='container-basic-rev'>
             {/* <h2>User Info Here</h2> */}
             <div className="reviewinfo">
             <div className="user-review-info">

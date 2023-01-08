@@ -75,7 +75,7 @@ export default function CreateABusiness() {
     }
 
     return (
-        <form className="CreateForm" onSubmit={handleSubmit}>
+        <form className="CreateFormbiz" onSubmit={handleSubmit}>
             <div className="side">
         {validationErrors.map((error, ind) => (
           <div className="bold" key={ind}>{error}</div>
