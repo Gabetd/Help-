@@ -73,8 +73,9 @@ const reviewed = (biz) => {
 const Logged = (biz)=> {
   if(!user){
     history.push('/login')
-  }else{
-    reviewed(biz)
+  }else if(biz.owner.id === user.id){
+    history.push(`/business/${biz.id}`)
+  }else { reviewed(biz)
   }
 }
 

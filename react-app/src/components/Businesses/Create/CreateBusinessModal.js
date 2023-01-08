@@ -32,13 +32,13 @@ export default function CreateABusiness() {
         if(phone.length !== 10) Errors.push('Please enter a valid phone number')
         if(zipcode.length !== 5) Errors.push('Please enter a valid zipcode')
         if(businessName.length > 100 || businessName.length < 3) Errors.push('Business Name must be between 3 and 100 characters')
-        // if(image.length > 2000 || image.length < 3) Errors.push('Please choose a different image')
+        if(!image) Errors.push('Please choose an image of type png or jpg only')
         if(streetAddress.length > 100 || streetAddress.length < 3) Errors.push('Street Address must be between 3 and 100 characters')
         if(city.length > 100 || city.length < 3) Errors.push('City must be between 3 and 100 characters')
         if(state.length > 100 || state.length < 2) Errors.push('Please enter a valid state')
         if(description.length > 100 || description.length < 3) Errors.push('Description must be between 3 and 3000 characters')
         setValidationErrors(Errors);
-    }, [phone, zipcode,description, state, ]);
+    }, [phone, zipcode,description, state, image]);
 
 
 

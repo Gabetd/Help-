@@ -34,11 +34,11 @@ function App() {
       <NavBar />
       <Switch>
       <Route path='/review/edit/:reviewId/business/:businessId' exact={true}>
-          <h2>Edit Review page</h2>
+          {/* <h2>Edit Review page</h2> */}
           <EditAReview/>
         </Route>
       <Route path='/review/add/:businessId' exact={true}>
-        <h2>You are on create a review page</h2>
+        {/* <h2>You are on create a review page</h2> */}
           <CreateAReview/>
         </Route>
       <Route path='/business/add' exact={true}>
