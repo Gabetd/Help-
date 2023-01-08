@@ -56,6 +56,9 @@ export default function CreateABusiness() {
 
     }
 
+    if(!User){
+        history.push('/')
+    }
 
     return (
         <form className="CreateForm" onSubmit={handleSubmit}>

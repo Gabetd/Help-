@@ -3,7 +3,7 @@ import { startTransition } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, NavLink } from 'react-router-dom'
 import { getAllBusinessesThunk } from "../store/business";
-import { getAllReviewsThunk } from "../store/review";
+import reviewReducer, { getAllReviewsThunk } from "../store/review";
 import { resetReview } from "../store/review";
 import './omega.css'
 // Import Swiper React components
@@ -18,6 +18,7 @@ import 'swiper/swiper-bundle.min.css';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
+import User from "./User";
 
 // export default function App() {
 //   return (
@@ -54,25 +55,29 @@ const stars = (num) => {
   return (<div>⭐</div>)}
 }
 
-const aveRating = (num) => {
-  if (num > 4.5 ){
-  return (<div>⭐⭐⭐⭐⭐</div>)}else if (num >= 4){
-  // return (<div>⭐⭐⭐⭐</div>)}else if (num > 3.5){
-  return (<div>⭐⭐⭐⭐</div>)}else if (num >= 3){
-  // return (<div>⭐⭐⭐</div>)}else if (num > 2.5){
-  return (<div>⭐⭐⭐</div>)}else if (num >= 2){
-  // return (<div>⭐⭐</div>)}else if (num > 1.5){
-  return (<div>⭐⭐</div>)}else if (num >= 1){
-  return (<div>⭐</div>)}
-  else return (<></>)
+const reviewed = (biz) => {
+  const ratings= Object.values(biz.rating).map(el => {
+    return [el.user_id, el.id]
+  })
+  console.log(biz, ratings, user.id)
+  for(let i = 0; i < ratings.length; i++){
+    if(ratings[i][0]=== user.id ){
+      history.push(`/review/edit/${ratings[i][1]}/business/${biz.id}`)
+      return
+    }
+  }
+    history.push(`/review/add/${biz.id}`)
+    return
 }
 
-const average = (arr) => {
-  let len = arr.length
-  if(len === 0){return 'No Reviews :('}
-  let sum = 0
-  for (let i = 0; i < len; i++){sum += arr[i].stars}
-  return `${sum/len}`}
+const Logged = (biz)=> {
+  if(!user){
+    history.push('/login')
+  }else{
+    reviewed(biz)
+  }
+}
+
 
   console.log('this is ',businesses)
   return(
@@ -112,13 +117,14 @@ const average = (arr) => {
           </NavLink>
           <p>Do you recommend this business?</p>
           {/* <p className="work-for-not-against">{aveRating(average(biz.rating))}{average(biz.rating)}</p> */}
-          <div class="product-review-stars">
-              <input type="radio" id="star5" name="rating" onClick={() => history.push(`/review/add/${biz.id}`)} value="5" class="hidden" /><label className="baseStar" for="star5" title="Great">★</label>
-              <input type="radio" id="star4" name="rating" onClick={() => history.push(`/review/add/${biz.id}`)} value="4" class="hidden" /><label className="baseStar" for="star4" title="Good">★</label>
-              <input type="radio" id="star3" name="rating" onClick={() => history.push(`/review/add/${biz.id}`)} value="3" class="hidden" /><label className="baseStar" for="star3" title="Ok">★</label>
-              <input type="radio" id="star2" name="rating" onClick={() => history.push(`/review/add/${biz.id}`)} value="2" class="hidden" /><label className="baseStar" for="star2" title="Could've Been Better">★</label>
-              <input type="radio" id="star1" name="rating" onClick={() => history.push(`/review/add/${biz.id}`)} value="1" class="hidden" /><label className="baseStar" for="star1" title="Not Good">★</label>
-            </div>
+          {/* <div class="product-review-stars">
+              <input type="radio" id="star5" name="rating" onClick={() => Logged(biz)} value="5" class="hidden" /><label className="baseStar" for="star5" title="Great">★</label>
+              <input type="radio" id="star4" name="rating" onClick={() => Logged(biz)} value="4" class="hidden" /><label className="baseStar" for="star4" title="Good">★</label>
+              <input type="radio" id="star3" name="rating" onClick={() => Logged(biz)} value="3" class="hidden" /><label className="baseStar" for="star3" title="Ok">★</label>
+              <input type="radio" id="star2" name="rating" onClick={() => Logged(biz)} value="2" class="hidden" /><label className="baseStar" for="star2" title="Could've Been Better">★</label>
+              <input type="radio" id="star1" name="rating" onClick={() => Logged(biz)} value="1" class="hidden" /><label className="baseStar" for="star1" title="Not Good">★</label>
+            </div> */}
+            <span onClick={() => Logged(biz)} className="newButton"> Add Your review</span>
           </div>
           {/* <p>{biz.street_address} {biz.city} {biz.state}</p>
           <p>{biz.description}</p> */}

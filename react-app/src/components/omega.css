@@ -109,6 +109,7 @@ html{
 .CreateForm{
   display: flex;
   flex-direction: column;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   /* background-color: black; */
@@ -318,7 +319,7 @@ margin: .5em;
     display: flex;
     padding: .5em;
     border: .3px solid grey;
-    width: 100%;
+    width: 94%;
     border-radius: 3px;
     margin: .5em;
     background-color:red;
@@ -529,11 +530,18 @@ margin: .5em;
       font-weight: bold;
       color: black;
     }
+    /* .bolder:hover{
+      border-bottom: 2px solid black;
+    } */
+
     .bold{
       font-size: 15px;
       font-weight: bold;
       color: black;
     }
+    /* .bold:hover{
+      border-bottom: 2px solid black;
+    } */
     .blue{
       color:blue
     }

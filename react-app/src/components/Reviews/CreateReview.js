@@ -55,7 +55,9 @@ export default function CreateAReview() {
     }
     }
 
-
+    if(!User){
+      history.push('/')
+  }
     return (
         <form className="CreateForm" onSubmit={handleSubmit}>
           <div className="ReviewPage">

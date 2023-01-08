@@ -4,33 +4,27 @@ import { useHistory, useParams } from 'react-router-dom'
 import { editReviewThunk } from "../../store/review";
 import { getAllReviewsByBusinessThunk } from "../../store/review";
 import { getSingleBusinessThunk } from "../../store/business";
+import { getOneReviewThunk } from "../../store/review";
 import { getAllReviewsThunk } from "../../store/review";
 import '../omega.css'
 
 
 export default function EditAReview() {
     const {reviewId} = useParams()
+    const {businessId} = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
     const User = useSelector(state => state.session.user)
-    const allReviews = useSelector(state => state.reviews.allReviews)
-    const [review, setReview] = useState('');
+    const ReviewOne = useSelector(state => state.reviews.business[reviewId])
+    const Review = useSelector(state => state.reviews.allReviews[reviewId])
+    const [review, setReview] = useState('')
     const [stars,setStars] = useState('');
-    // console.log('Clicked')
     const [validationErrors, setValidationErrors] = useState([])
     // const rev = allReviews.find(el => el.id === reviewId)
-    const rev = {business_id:2}
-    console.log('review', allReviews)
+    // const rev = {business_id:2}
+    // console.log('review', allReviews)
+    console.log('review', Review)
     /* Validation errors for form */
-    useEffect(() => {
-        const validationErrors = [];
-        setValidationErrors(validationErrors);
-    }, []);
-
-    useEffect(() => {
-      dispatch(getAllReviewsThunk())
-    }, [dispatch])
-
     useEffect(() => {
       const Errors = [];
       if (!review) Errors.push('Please add a review before submitting')
@@ -40,6 +34,16 @@ export default function EditAReview() {
       setValidationErrors(Errors);
     }, [review, stars]);
 
+    useEffect(() => {
+      dispatch(getAllReviewsThunk())
+      dispatch(getOneReviewThunk(reviewId))
+      if(ReviewOne){
+        setReview(ReviewOne.review)
+      }
+    }, [dispatch])
+
+    // console.log(ReviewOne?.review)
+
     const handleSubmit = async () => {
       console.log('made it to submit')
       if(validationErrors.length > 0){
@@ -48,21 +52,23 @@ export default function EditAReview() {
         const newReview = {
           stars,
           review,
-          business_id: rev.business_id,
+          business_id: businessId,
           user_id: User.id
         }
         console.log('payload = ', newReview)
         const data = await dispatch(editReviewThunk(newReview, reviewId))
         console.log(data)
     if(data){
-      dispatch(getAllReviewsByBusinessThunk(rev.business_id))
-      dispatch(getSingleBusinessThunk(rev.business_id))
-      history.push(`/business/${rev.business_id}`)
+      dispatch(getAllReviewsByBusinessThunk(businessId))
+      dispatch(getSingleBusinessThunk(businessId))
+      history.push(`/business/${businessId}`)
     }
     }
 
 
-
+    if(!User){
+      history.push('/')
+  }
     return (
         <form className="CreateForm" onSubmit={handleSubmit}>
           <div className="ReviewPage">

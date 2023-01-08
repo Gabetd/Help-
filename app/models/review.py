@@ -32,4 +32,5 @@ class Review(db.Model):
       "id":self.id,
       "stars": self.stars,
       "review":self.review,
+      "user_id": self.user_id
       }

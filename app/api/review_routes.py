@@ -101,8 +101,10 @@ def review_by_id(review_id):
   review = Review.query.get(review_id)
   if not review:
     return {'errors': ['That review does not exist']}, 401
-  images = Review_Image.query.filter(Review_Image.review_id == new_review.id).all()
-  business = Business.query.get(new_review.business_id)
-  user = User.query.get(new_review.user_id)
+  images = Review_Image.query.filter(Review_Image.review_id == review.id).all()
+  business = Business.query.get(review.business_id)
+  user = User.query.get(review.user_id)
   image_obj = [image.to_dict() for image in images]
   return jsonify(review.to_dict_express(image_obj, business.to_dict(), user.to_dict()))
+
+# @review_routes.route('/<int:review_id>', methods=[])
