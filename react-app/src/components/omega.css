@@ -277,6 +277,7 @@ margin: .5em;
   flex-wrap: wrap;
   word-break: break-all;
   max-height: 100px;
+  overflow-y: auto;
 }
 
 .oldButton{
