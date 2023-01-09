@@ -94,7 +94,7 @@ def edit_business(business_id):
 def del_business(business_id):
   # form = BusinessForm()
   business = Business.query.get(business_id)
-  reviews = Review.query.filter(business_id == business_id).all()
+  reviews = Review.query.filter(Review.business_id == business_id).all()
   if Business:
     for review in reviews:
       db.session.delete(review)
