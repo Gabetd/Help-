@@ -109,7 +109,7 @@ const Logged = (biz)=> {
 
       {Object.values(businesses).map(biz => (
         <div className='LittleBusiness' key={biz.id}>
-          <img className="businessImgSplashPage" src={biz.preview_img} />
+          <img className="businessImgSplashPage" src={biz.preview_img} alt='Photo of business here'/>
           <div className="spacerforbusiness">
           <NavLink to={`/business/${biz.id}`}>
           <p className="bolder">{biz.business_name}</p>

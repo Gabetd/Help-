@@ -33,12 +33,13 @@ export default function CreateABusiness() {
         if(zipcode.length !== 5) Errors.push('Please enter a valid zipcode')
         if(businessName.length > 100 || businessName.length < 3) Errors.push('Business Name must be between 3 and 100 characters')
         if(!image) Errors.push('Please choose an image of type png or jpg only')
+        if(image.length > 2000) Errors.push('Please use a different image')
         if(streetAddress.length > 100 || streetAddress.length < 3) Errors.push('Street Address must be between 3 and 100 characters')
         if(city.length > 100 || city.length < 3) Errors.push('City must be between 3 and 100 characters')
         if(state.length > 100 || state.length < 2) Errors.push('Please enter a valid state')
         if(description.length > 100 || description.length < 3) Errors.push('Description must be between 3 and 3000 characters')
         setValidationErrors(Errors);
-    }, [phone, zipcode,description, state, image]);
+    }, [phone, zipcode, description, state, image, streetAddress, city ]);
 
 
 
@@ -66,13 +67,13 @@ export default function CreateABusiness() {
     if(!User){
         history.push('/')
     }
-    const imageUpload = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append("image", file);
-    const res = await dispatch(createPreviewImageThunk(formData))
-    setImage(res.url)
-    }
+    // const imageUpload = async (e) => {
+    // const file = e.target.files[0];
+    // const formData = new FormData();
+    // formData.append("image", file);
+    // const res = await dispatch(createPreviewImageThunk(formData))
+    // setImage(res.url)
+    // }
 
     return (
         <form className="CreateFormbiz" onSubmit={handleSubmit}>
@@ -83,6 +84,16 @@ export default function CreateABusiness() {
       </div>
             <h2>Buisness Information</h2>
             {/* <h3>GO BACK TO CREATE BUSINESS MODAL.JS TO FIX THIS</h3> */}
+            <label>
+                <input
+                    className="input"
+                    placeholder="Preview Image"
+                    type="text"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                    required
+                />
+            </label>
             <label>
                 <input
                     className="input"
@@ -164,7 +175,7 @@ export default function CreateABusiness() {
               <option value="Self Care">Self Care</option>
             </select>
             </label>
-            <label>
+            {/* <label>
         <center>
         <h5 className="bold">Uplad Your Business Image</h5>
         </center>
@@ -178,7 +189,7 @@ export default function CreateABusiness() {
             required
           />
         </div>
-            </label>
+            </label> */}
             <div>
             <span className="newButton" onClick={() => handleSubmit()} type="submit" disabled={validationErrors.length}>Create</span>
             </div>
