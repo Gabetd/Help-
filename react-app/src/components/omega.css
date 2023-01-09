@@ -737,3 +737,6 @@ footer{
     min-width: 800px;
   }
 }
+span:hover{
+  cursor: pointer;
+}
