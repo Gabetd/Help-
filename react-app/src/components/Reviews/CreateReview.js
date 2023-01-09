@@ -27,7 +27,7 @@ export default function CreateAReview() {
       if (!review) Errors.push('Please add a review before submitting')
       if (review.length > 3000) validationErrors.push('Review must be less than 3000 characters')
       if (!stars) Errors.push('Please rate this business before submitting')
-
+      console.log(review.length)
       setValidationErrors(Errors);
     }, [review, stars]);
 
