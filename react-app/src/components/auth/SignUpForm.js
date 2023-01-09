@@ -17,9 +17,9 @@ const SignUpForm = () => {
     const valErrors = []
     if (!email.includes('@')) valErrors.push('Please enter a valid email')
     if(username.length > 30 || username.length < 3) valErrors.push('username must be between 3 and 30 characters')
-
+    if(password !== repeatPassword) valErrors.push('Passwords are not the same')
     setErrors(valErrors)
-  }, [email, username])
+  }, [email, username, password, repeatPassword])
 
   const onSignUp = async (e) => {
     if(errors.length){
@@ -31,9 +31,7 @@ const SignUpForm = () => {
         setErrors(data)
       }
     }else{
-      const valErrors = []
-      valErrors.push('Passwords do not match')
-      setErrors(valErrors)
+      return
     }
   };
 
