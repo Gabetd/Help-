@@ -67,13 +67,13 @@ export default function CreateABusiness() {
     if(!User){
         history.push('/')
     }
-    // const imageUpload = async (e) => {
-    // const file = e.target.files[0];
-    // const formData = new FormData();
-    // formData.append("image", file);
-    // const res = await dispatch(createPreviewImageThunk(formData))
-    // setImage(res.url)
-    // }
+    const imageUpload = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    const res = await dispatch(createPreviewImageThunk(formData))
+    setImage(res.url)
+    }
 
     return (
         <form className="CreateFormbiz" onSubmit={handleSubmit}>
@@ -84,7 +84,7 @@ export default function CreateABusiness() {
       </div>
             <h2>Buisness Information</h2>
             {/* <h3>GO BACK TO CREATE BUSINESS MODAL.JS TO FIX THIS</h3> */}
-            <label>
+            {/* <label>
                 <input
                     className="input"
                     placeholder="Preview Image"
@@ -93,7 +93,7 @@ export default function CreateABusiness() {
                     onChange={(e) => setImage(e.target.value)}
                     required
                 />
-            </label>
+            </label> */}
             <label>
                 <input
                     className="input"
@@ -175,7 +175,7 @@ export default function CreateABusiness() {
               <option value="Self Care">Self Care</option>
             </select>
             </label>
-            {/* <label>
+            <label>
         <center>
         <h5 className="bold">Uplad Your Business Image</h5>
         </center>
@@ -189,7 +189,7 @@ export default function CreateABusiness() {
             required
           />
         </div>
-            </label> */}
+            </label>
             <div>
             <span className="newButton" onClick={() => handleSubmit()} type="submit" disabled={validationErrors.length}>Create</span>
             </div>
