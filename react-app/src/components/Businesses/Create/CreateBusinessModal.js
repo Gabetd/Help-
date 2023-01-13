@@ -164,20 +164,9 @@ export default function CreateABusiness() {
                     required
                 />
             </label>
-            <label>
-            <select name="Type"
-            // placeho="Business Type"
-            onChange={(e) => setType(e.target.value)}>
-              {/* <option value="">-- --</option> */}
-              <option value="Restaurant">Restaurant</option>
-              <option value="Vehicle Repair">Vehicle Repair</option>
-              <option value="Home Repair">Home Repair</option>
-              <option value="Self Care">Self Care</option>
-            </select>
-            </label>
-            <label>
+            <label className="aws-holder">
         <center>
-        <h5 className="bold">Uplad Your Business Image</h5>
+        <h5 className="bold">Upload Your Business Image</h5>
         </center>
         <div className="aws-input">
           <input
@@ -190,7 +179,21 @@ export default function CreateABusiness() {
           />
         </div>
             </label>
-            <div>
+            <label>
+            <center>
+        <h5 className="bold"> Business Type</h5>
+        </center>
+            <select name="Type"
+            // placeho="Business Type"
+            onChange={(e) => setType(e.target.value)}>
+              {/* <option value="">-- --</option> */}
+              <option value="Restaurant">Restaurant</option>
+              <option value="Vehicle Repair">Vehicle Repair</option>
+              <option value="Home Repair">Home Repair</option>
+              <option value="Self Care">Self Care</option>
+            </select>
+            </label>
+            <div className="spaced">
             <span className="newButton" onClick={() => handleSubmit()} type="submit" disabled={validationErrors.length}>Create</span>
             </div>
         </form>

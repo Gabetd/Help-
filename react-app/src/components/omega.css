@@ -704,7 +704,7 @@ footer{
   justify-content: center;
   align-items: center;
   /* background-color: black; */
-  height: 700px;
+  height: 100%;
   width: 75%;
 }
 .container-basic-rev{
@@ -743,4 +743,30 @@ span:hover{
 }
 button:hover{
   cursor: pointer;
+}
+
+.file-drop{
+  display: flex;
+  flex-direction: row;
+  /* background-color:#2ecc71 ; */
+  padding: 20px;
+
+}
+button{
+  padding: 50px;
+  /* background-color: #d35400; */
+}
+.aws-holder{
+  /* background-color: #d35400; */
+  padding-left: 165px;
+  padding-right: 165px;
+  border: 2px solid lightblue;
+  border-radius: 20px;
+  margin: 10px;
+}
+.spaced{
+  width: 300px;
+  justify-content: left;
+  margin-right: 2.5%;
+  margin-top: 30px;
 }
