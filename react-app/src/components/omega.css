@@ -548,12 +548,12 @@ margin: .5em;
     .resize{
       height: 800px;
       max-height: 800px;
+      min-height: 800px;
       width: 100%;
+      object-fit: cover;
     }
 
     .bolder{
-      /* size: 10px; */
-
       font-size: 30px;
       font-weight: bold;
       color: black;

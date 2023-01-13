@@ -17,14 +17,14 @@ export default function EditAReview() {
     const User = useSelector(state => state.session.user)
     const ReviewOne = useSelector(state => state.reviews.business[reviewId])
     const Review = useSelector(state => state.reviews.allReviews)
-    const [review, setReview] = useState('')
-    const [stars,setStars] = useState('');
+    const [review, setReview] = useState(Review ? Review.review : '')
+    const [stars,setStars] = useState(Review ? Review.stars : '');
     const [validationErrors, setValidationErrors] = useState([])
 
     useEffect(() => {
       const Errors = [];
       if (!review) Errors.push('Please add a review before submitting')
-      if (review.length >= 3000) Errors.push('Review must be less than 3000 characters')
+      if (review ?  review.length >= 3000 : false) Errors.push('Review must be less than 3000 characters')
       if (!stars) Errors.push('Please rate this business before submitting')
       setValidationErrors(Errors);
     }, [review, stars]);
@@ -47,6 +47,7 @@ export default function EditAReview() {
       dispatch(getAllReviewsByBusinessThunk(businessId))
       dispatch(getSingleBusinessThunk(businessId))
       history.push(`/business/${businessId}`)
+      window.location.reload(false);
     }
     }
     useEffect(() => {

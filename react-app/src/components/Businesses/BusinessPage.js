@@ -61,6 +61,8 @@ const aveRating = (num) => {
   else return (<></>)
 }
 
+
+
 const deleteRev = (id) => {
   dispatch(deleteReviewThunk(id))
   dispatch(getAllReviewsByBusinessThunk(businessId))
