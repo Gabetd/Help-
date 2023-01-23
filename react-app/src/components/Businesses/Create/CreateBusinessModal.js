@@ -13,14 +13,14 @@ export default function CreateABusiness() {
     const history = useHistory()
     const User = useSelector(state => state.session.user)
     // const [ownerId, setOwnerId] = useState('');
-    const [businessName,setBusinessName] = useState('');
+    const [businessName,setBusinessName] = useState('asdf');
     const [image, setImage] = useState('');
-    const [phone, setPhone] = useState('');
-    const [streetAddress,setStreetAddress] = useState('');
-    const [city,setCity] = useState('');
-    const [state,setState] = useState('');
-    const [zipcode,setZipcode] = useState('');
-    const [description,setDescription] = useState('');
+    const [phone, setPhone] = useState('1234567890');
+    const [streetAddress,setStreetAddress] = useState('asdfasdf');
+    const [city,setCity] = useState('asdf');
+    const [state,setState] = useState('asdf');
+    const [zipcode,setZipcode] = useState('12345');
+    const [description,setDescription] = useState('asdfasdf');
     const [type, setType] = useState("Restaurant");
 
 
@@ -73,6 +73,7 @@ export default function CreateABusiness() {
     formData.append("image", file);
     const res = await dispatch(createPreviewImageThunk(formData))
     setImage(res.url)
+    setValidationErrors(res.url)
     }
 
     return (
