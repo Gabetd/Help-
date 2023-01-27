@@ -116,8 +116,8 @@ const SignUpForm = () => {
           value={repeatPassword}
           required={true}
         ></input>
-                    <label className="aws-holder">
-        <center>
+                    {/* <label className="aws-holder"> */}
+        {/* <center>
         <h5 className="bold">Upload Your Business Image</h5>
         </center>
         <div className="aws-input">
@@ -130,7 +130,7 @@ const SignUpForm = () => {
             required
           />
         </div>
-            </label>
+            </label> */}
       <span className='newButton' onClick={() => onSignUp()} disabled={errors.length} type='submit'>Sign Up</span>
       </div>
       <div className='AuthImg'>
