@@ -593,7 +593,7 @@ margin: .5em;
 }
 .infoBox{
   position: absolute;
-  top: 20%;
+  top: 200px;
   left: 65%;
   right: 0%;
   bottom: 0;

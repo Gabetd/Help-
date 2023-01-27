@@ -13,14 +13,14 @@ export default function CreateABusiness() {
     const history = useHistory()
     const User = useSelector(state => state.session.user)
     // const [ownerId, setOwnerId] = useState('');
-    const [businessName,setBusinessName] = useState('asdf');
+    const [businessName,setBusinessName] = useState('');
     const [image, setImage] = useState('');
-    const [phone, setPhone] = useState('1234567890');
-    const [streetAddress,setStreetAddress] = useState('asdfasdf');
-    const [city,setCity] = useState('asdf');
-    const [state,setState] = useState('asdf');
-    const [zipcode,setZipcode] = useState('12345');
-    const [description,setDescription] = useState('asdfasdf');
+    const [phone, setPhone] = useState('');
+    const [streetAddress,setStreetAddress] = useState('');
+    const [city,setCity] = useState('');
+    const [state,setState] = useState('');
+    const [zipcode,setZipcode] = useState('');
+    const [description,setDescription] = useState('');
     const [type, setType] = useState("Restaurant");
 
 
@@ -72,8 +72,11 @@ export default function CreateABusiness() {
     const formData = new FormData();
     formData.append("image", file);
     const res = await dispatch(createPreviewImageThunk(formData))
+    if(res && res.url){
     setImage(res.url)
-    setValidationErrors(res.url)
+    } else{
+    setValidationErrors(['Please select a jpg or pdf image file'])
+    }
     }
 
     return (
@@ -84,17 +87,6 @@ export default function CreateABusiness() {
         ))}
       </div>
             <h2>Buisness Information</h2>
-            {/* <h3>GO BACK TO CREATE BUSINESS MODAL.JS TO FIX THIS</h3> */}
-            {/* <label>
-                <input
-                    className="input"
-                    placeholder="Preview Image"
-                    type="text"
-                    value={image}
-                    onChange={(e) => setImage(e.target.value)}
-                    required
-                />
-            </label> */}
             <label>
                 <input
                     className="input"

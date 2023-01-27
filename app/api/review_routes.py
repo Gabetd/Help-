@@ -23,6 +23,21 @@ def get_all_reviews():
   return jsonify(review_list)
 
 
+@review_routes.route('/<int:user_id>', methods=['GET'])
+def get_reviews_by_user(user_id):
+  # form = ReviewForm()
+  reviews = Review.query.filter(Review.user_id == user_id).all()
+  if not reviews:
+    return {'errors': ['No reviews found']}, 401
+  # review_obj = [review.to_dict() for review in reviews]
+  review_list = []
+  for review in reviews:
+    images = Review_Image.query.filter(Review_Image.review_id == review.id).all()
+    business = Business.query.get(review.business_id)
+    user = User.query.get(review.user_id)
+    image_obj = [image.to_dict() for image in images]
+    review_list.append(review.to_dict_express(image_obj, business.to_dict(), user.to_dict()))
+  return jsonify(review_list)
 
 @review_routes.route('/business/<int:business_id>', methods=['GET'])
 def review_by_business_id(business_id):

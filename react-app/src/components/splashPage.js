@@ -78,13 +78,13 @@ const Logged = (biz)=> {
   }
 }
 
-
+  if(!reviews){
+    return (
+      <h1> Loading ...</h1>
+    )
+  }
   return(
     <div>
-      {user ?
-      <></>
-      :
-    <></>}
           <Swiper
         spaceBetween={30}
         centeredSlides={true}

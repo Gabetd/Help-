@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { createPreviewImageThunk } from '../../store/business';
 import '../omega.css'
 
 const SignUpForm = () => {
@@ -10,6 +11,7 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [image, setImage] = useState('')
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -50,7 +52,13 @@ const SignUpForm = () => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
-
+  const imageUpload = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    const res = await dispatch(createPreviewImageThunk(formData))
+    setImage(res.url)
+  }
   if (user) {
     return <Redirect to='/' />;
   }
@@ -108,6 +116,21 @@ const SignUpForm = () => {
           value={repeatPassword}
           required={true}
         ></input>
+                    <label className="aws-holder">
+        <center>
+        <h5 className="bold">Upload Your Business Image</h5>
+        </center>
+        <div className="aws-input">
+          <input
+            type="file"
+            className="file-drop"
+            accept="file/*"
+            encType="multipart/form-data"
+            onChange={imageUpload}
+            required
+          />
+        </div>
+            </label>
       <span className='newButton' onClick={() => onSignUp()} disabled={errors.length} type='submit'>Sign Up</span>
       </div>
       <div className='AuthImg'>
