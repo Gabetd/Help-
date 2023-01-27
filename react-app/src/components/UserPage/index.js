@@ -1,5 +1,5 @@
 
-
+import { getAllReviewsByUserThunk } from "../../store/review"
 
 
 export default function UserPage(){

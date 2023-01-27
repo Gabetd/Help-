@@ -66,7 +66,7 @@ export const getAllReviewsThunk = () => async (dispatch) => {
 };
 
 export const getAllReviewsByUserThunk = (user_id) => async (dispatch) => {
-    const response = await fetch('/api/review/')
+    const response = await fetch(`/api/review/${user_id}`)
     if (response.ok) {
         const Data = await response.json()
         await dispatch(loadAllReviews(Data))
