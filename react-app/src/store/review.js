@@ -65,6 +65,16 @@ export const getAllReviewsThunk = () => async (dispatch) => {
     return
 };
 
+export const getAllReviewsByUserThunk = (user_id) => async (dispatch) => {
+    const response = await fetch('/api/review/')
+    if (response.ok) {
+        const Data = await response.json()
+        await dispatch(loadAllReviews(Data))
+        return Data
+    }
+    return
+};
+
 export const createReviewThunk = (review, businessId) => async dispatch => {
     const response = await fetch(`/api/review/new/${businessId}`, {
         method: 'POST',
