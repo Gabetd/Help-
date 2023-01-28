@@ -147,8 +147,10 @@ const Logged = (biz)=> {
             {/* <h2>User Info Here</h2> */}
             <div className="reviewinfo">
             <div className="user-review-info">
+              <NavLink to={`/users/${rev.user.id}`}>
             <img className="pfp-review" src="https://media.istockphoto.com/id/1210939712/vector/user-icon-people-icon-isolated-on-white-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=vKDH9j7PPMN-AiUX8vsKlmOonwx7wjqdKiLge7PX1ZQ="/>
             <p className="bold">{rev.user.username}</p>
+              </NavLink>
             </div>
             <p>Wrote a review</p>
             <NavLink to={`/business/${rev.business.id}`}>
