@@ -770,3 +770,29 @@ button{
   margin-right: 2.5%;
   margin-top: 30px;
 }
+.searchBarHousing{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  background-color: red;
+  top: 10px;
+  left: 35%;
+  width: 350px;
+  height: 55px;
+  border-radius: 10px;
+}
+.searchBar{
+  padding: 12px;
+  width: 300px;
+
+}
+.testing{
+  display: flex;
+  /* background-color: #2ecc71; */
+  color: #DFE3E4;
+  width: 70px;
+  height: 50px;
+  font-size: xx-large;
+  justify-content: center;
+  align-items: center;
+}

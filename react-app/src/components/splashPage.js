@@ -35,6 +35,7 @@ const dispatch = useDispatch()
 const user = useSelector(state => state.session.user)
 const businesses = useSelector(state => state.business.allBusinesses)
 const reviews = useSelector(state => state.reviews.allReviews)
+const [search, setSearch] = useState('')
 
 useEffect(() => {
   dispatch(resetReview())
@@ -85,6 +86,12 @@ const Logged = (biz)=> {
   }
   return(
     <div>
+      <div className="searchBarHousing">
+      <input className='searchBar' type="text" placeholder="Search"/>
+      <span className="testing">🔍︎
+      </span>
+      </div>
+
           <Swiper
         spaceBetween={30}
         centeredSlides={true}
