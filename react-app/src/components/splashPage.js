@@ -20,14 +20,6 @@ import 'swiper/swiper-bundle.min.css';
 import { Autoplay, Pagination, Navigation } from "swiper";
 import User from "./User";
 
-// export default function App() {
-//   return (
-//     <>
-
-    {/* </>
-  );
-} */}
-
 
 const Home = () => {
 const history = useHistory()
@@ -42,10 +34,6 @@ useEffect(() => {
   dispatch(getAllBusinessesThunk())
   dispatch(getAllReviewsThunk())
 }, [dispatch])
-
-// if(!businesses){
-//   return null
-// }
 
 const stars = (num) => {
   if (num === 5){
@@ -85,13 +73,36 @@ const Logged = (biz)=> {
     )
   }
   return(
-    <div>
+    <div className="splashHousing">
+
+      <div className="dropdown">
       <div className="searchBarHousing">
-      <input className='searchBar' type="text" placeholder="Search"/>
+      <div>
+      <input className='searchBar'
+      type="text"
+      placeholder="Search"
+      onChange={(e)=>{setSearch(e.target.value)}}/>
+      <div className="dropdownMenu">
+        {Object.values(businesses).filter((val)=>{
+        if(search === ''){
+          return val
+        } else if(val.business_name.toLowerCase().includes(search.toLowerCase()) || val.business_type.toLowerCase().includes(search.toLowerCase())){
+          return val
+        }
+        }).map(biz => (
+          <NavLink to={`/business/${biz.id}`}>
+          <p className="searchItem">{biz.business_name}</p>
+          </NavLink>
+        ))
+        }
+      </div>
+      </div>
       <span className="testing">🔍︎
       </span>
+
       </div>
 
+      </div>
           <Swiper
         spaceBetween={30}
         centeredSlides={true}
