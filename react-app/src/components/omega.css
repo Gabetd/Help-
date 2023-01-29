@@ -818,7 +818,9 @@ button{
 .searchBar:focus + .dropdownMenu {
   color: rgba(0, 0, 0, 1);
   background-color: white;
+  max-height: 150px;
   z-index: 100;
+  overflow-y: auto;
 }
 
 .splashHousing{
@@ -827,9 +829,10 @@ button{
 .searchItem{
   margin: 0px;
   padding: 3px;
+  z-index: -1;
 }
 .searchItem:hover{
-  background-color: rgba(10, 10, 10, .3);
+cursor:pointer;
 }
 a:visited{
   text-decoration: none;

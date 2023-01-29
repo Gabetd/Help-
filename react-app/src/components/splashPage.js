@@ -90,9 +90,7 @@ const Logged = (biz)=> {
           return val
         }
         }).map(biz => (
-          <NavLink to={`/business/${biz.id}`}>
-          <p className="searchItem">{biz.business_name}</p>
-          </NavLink>
+          <p className="searchItem" onClick={() => history.push(`/business/${biz.id}`)}>{biz.business_name}</p>
         ))
         }
       </div>
