@@ -60,7 +60,7 @@ const Maps = ({ business }) => {
                     onUnmount={onUnmount}
                 >
                     <Marker key={business.id}
-                        position={{ lat: mapLocation?.lat, lng: mapLocation?.lng }}
+                        position={{ lat: mapLocation.lat, lng: mapLocation.lng }}
                         title={business.name}
                         icon={<i style={{ color: 'smokewhite', fontSize: '15px' }} class="fa-solid fa-location-dot" />}
                         streetView={false} />
