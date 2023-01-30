@@ -6,7 +6,7 @@ import { getSingleBusinessThunk } from "../../store/business";
 import { deleteBusinessThunk } from "../../store/business";
 import { getAllReviewsByBusinessThunk } from "../../store/review";
 import { deleteReviewThunk } from "../../store/review"
-import Maps from "../maps/index";
+// import Maps from "../maps/index";
 import '../omega.css'
 
 export default function SingleBusiness(){
@@ -196,9 +196,9 @@ return(
           <p className="padding">{business.street_address} {business.city} {business.state}</p>
         </div>
     </div>
-    <div className="mapPlacement">
+    {/* <div className="mapPlacement">
         <Maps business={business}/>
-    </div>
+    </div> */}
   </div>
 )
 }
