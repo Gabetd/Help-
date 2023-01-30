@@ -838,3 +838,72 @@ a:visited{
   text-decoration: none;
   color: black
 }
+.upperUserPage{
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, .05);
+}
+.ProfileImage{
+  position: relative;
+  top: 50px;
+  width: 215px;
+  height: 215px;
+  border: solid 1px black;
+  border-radius: 15px;
+}
+.UserInfo{
+  position: relative;
+  left: 400px;
+  display: flex;
+  flex-direction: row;
+/* background-color: #d35400; */
+width: 60%;
+align-items: center;
+
+}
+.UserStats{
+  margin: 50px 0px 10px 70px;
+}
+.spaced{
+  margin: 10px;
+}
+.OutermostHolder{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.reviewHousing{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 100px 20px 0px 20px;
+  /* border-left: solid 1px black;
+  border-right: solid 1px black; */
+}
+.welcome{
+  position: absolute;
+  top: 350px;
+  right: 45%;
+  left: 45%;
+}
+.mrWide{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.WideInfoHolder{
+  width: 100%;
+  background-color: rgba(0, 0, 0, .05);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.underImg{
+  position: relative;
+  top: 75px;
+  left: 400px;
+}

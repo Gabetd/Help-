@@ -174,7 +174,6 @@ const Logged = (biz)=> {
             </NavLink>
             <div className="stars-review">
             {stars(rev.stars)}
-            {/* <p>{rev.stars}</p> */}
             </div>
             <p className="reviewdisplay">{rev.review}</p>
             </div>
