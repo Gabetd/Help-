@@ -790,7 +790,9 @@ button{
 .searchBar{
   padding: 12px;
   width: 300px;
-
+  max-height: 43px;
+  height: 17px;
+  border: 1px solid red;
 }
 .testing{
   display: flex;
