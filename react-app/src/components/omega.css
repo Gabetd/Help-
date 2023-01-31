@@ -888,9 +888,10 @@ align-items: center;
 }
 .welcome{
   position: absolute;
-  top: 350px;
+  top: 500px;
   right: 45%;
   left: 45%;
+  color: red;
 }
 .mrWide{
   width: 100%;
